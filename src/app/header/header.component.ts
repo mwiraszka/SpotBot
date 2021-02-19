@@ -6,14 +6,6 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  public app_header: string = 'my app_header';
-
-
-  constructor() {
-    console.log('header says hello');
-  }
-
-  ngOnInit(): void {
-  }
-
+  constructor() { }
+  ngOnInit(): void { }
 }

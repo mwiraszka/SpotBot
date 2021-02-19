@@ -5,12 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent {
-
-  title = 'spotbot';
-
-  constructor() {
-    console.log("hello from app component");
-  }
-
+  title = 'Hello SpotBot';
+  constructor() { }
 }
