@@ -2,15 +2,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap');
 * { font-family: 'Lato', sans-serif; }
 
+/* Custom colors */
+$near-white: hsl(240,17%,95%);
+$light-grey: hsla(0,0%,77%,40%);
+$dark-grey-1: hsla(0,0%,8%,85%);
+$dark-grey-2: hsla(0,0%,10%,85%);
+$near-black: hsl(0,0%,7%);
+
 body {
-  padding: 20px;
-  background-color: #f1f1f5; 
+  padding: 10px;
+  background:
+    radial-gradient($light-grey, transparent 16%) 0 0,
+    radial-gradient($light-grey, transparent 16%) 4px 4px;
+  background-color: $near-white;
+  background-size: 8px 8px;
 }
 
 [class^="grid-item"] {
   display: grid;
   align-items: center;
-  justify-content: center;
+  justify-items: center;
   border-radius: 10px;
 }
 
@@ -19,15 +30,27 @@ body {
   justify-content: center;
   align-content: center;
   grid-template-columns: 1fr;
-  grid-template-rows: 250px 300px minmax(150px, 250px) 1fr 50px;
-  grid-gap: 5px;
-  height: 95vh;
+  grid-template-rows: 220px 300px minmax(150px, 250px) 1fr 50px;
+  gap: 5px;
+  height: 100vh;
 }
+
+.textured-bg {
+  color: hsla(0,0%,95%,90%);
+  background:
+    linear-gradient(27deg, $dark-grey-1 5px, transparent 5px) 0 2px,
+    linear-gradient(90deg, $dark-grey-2 10px, transparent 10px);
+  background-color: $near-black;
+  background-size: 10px 10px;
+  border: 2px solid hsl(0,0%,15%);
+}
+.plain-bg { background: $near-white; }
+
 
 @media (min-width: 700px) {
   .wrapper {
     grid-template-columns: 450px fit-content(600px);
-    grid-template-rows: 300px 300px 400px 50px;
+    grid-template-rows: 220px 300px 400px 50px;
   }
   .grid-item-1 {
     grid-row: 1;
@@ -50,16 +73,3 @@ body {
     grid-column: 1/-1;
   }
 }
-
-.textured-bg {
-  color: white;
-  background-image: url(./assets/box-bg.webp); 
-  background-repeat: repeat;
-  border: 2px solid #ddd;
-}
-
-
-
-
-
-
