@@ -26,7 +26,7 @@ body {
   display: grid;
   align-items: center;
   justify-items: center;
-  border-radius: 10px;
+  border-radius: 8px;
 }
 
 .wrapper {
@@ -48,7 +48,6 @@ body {
   background-size: 10px 10px;
   border: 2px solid $dark-grey-2;
 }
-.plain-bg { background: $near-white; }
 
 
 @media (min-width: 700px) {
