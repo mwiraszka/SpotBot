@@ -3,6 +3,10 @@
 * { font-family: 'Lato', sans-serif; }
 
 /* Custom colors */
+:root {
+  --main-color:	hsl(141,71%,35%);
+  --main-color-dark: hsl(141,71%,28%);
+}
 $near-white: hsl(240,17%,95%);
 $light-grey: hsla(0,0%,77%,40%);
 $dark-grey-1: hsla(0,0%,8%,85%);
@@ -42,7 +46,7 @@ body {
     linear-gradient(90deg, $dark-grey-2 10px, transparent 10px);
   background-color: $near-black;
   background-size: 10px 10px;
-  border: 2px solid hsl(0,0%,15%);
+  border: 2px solid $dark-grey-2;
 }
 .plain-bg { background: $near-white; }
 

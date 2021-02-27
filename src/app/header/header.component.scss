@@ -1,18 +1,16 @@
-$primary: #1dad4f;
-
 header {
   text-align: center;
 }
 
 h1 {
-  color: $primary;
+  color: var(--main-color);
   font-size: 5rem;
   font-weight: bold;
   i {
     font-size: 50%;
     font-style: normal;
     font-weight: normal;
-    color: darken($primary, 5%);
+    color: var(--main-color-dark);
   }
 }
 
