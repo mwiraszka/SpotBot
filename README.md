@@ -33,3 +33,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 # Spotify Integration
 
 https://developer.spotify.com/documentation/web-api/quick-start/
+
+## Firebase functions
+
+Our backend server is powered via Firebase cloud functions.
+
+    firebase deploy --only functions
