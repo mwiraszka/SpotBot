@@ -1,6 +1,6 @@
 # Spotbot
 
-This web app is built with the Angular framework. Spotbot makes your life easier by allowing you to drop a music folder and allowing you to create a Spotify playlist with any songs found in Spotify. 
+This web app is built with the Angular framework. Spotbot makes your life easier by allowing you to drop a music folder and allowing you to create a Spotify playlist with any songs found in Spotify.
 
 Live website is available at: https://spotbot-762b2.web.app/
 
@@ -29,3 +29,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# Spotify Integration
+
+https://developer.spotify.com/documentation/web-api/quick-start/
