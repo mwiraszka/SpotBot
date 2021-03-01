@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { PortalComponent } from './portal/portal.component';
 import { SummaryComponent } from './summary/summary.component';
 import { FooterComponent } from './footer/footer.component';
+import { AngularFireFunctionsModule, ORIGIN } from '@angular/fire/functions';
 
 @NgModule({
   declarations: [
@@ -16,10 +17,16 @@ import { FooterComponent } from './footer/footer.component';
     LoginComponent,
     PortalComponent,
     SummaryComponent,
-    FooterComponent
+    FooterComponent,
   ],
-  imports: [ BrowserModule, AppRoutingModule ],
-  providers: [ ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    AngularFireFunctionsModule
+  ],
+  providers: [
+    { provide: ORIGIN, useValue: 'https://spotbot-762b2.web.app' }
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
