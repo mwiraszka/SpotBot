@@ -8,9 +8,30 @@
     ],
     "rewrites": [
       {
+        "source": "/helloWorld",
+        "function": "helloWorld"
+      },
+      {
+        "source": "/login",
+        "function": "login"
+      },
+      {
+        "source": "/callback",
+        "function": "callback"
+      },
+      {
+        "source": "/refresh_token",
+        "function": "refresh_token"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
     ]
+  },
+  "functions": {
+    "predeploy": [
+    ],
+    "source": "functions"
   }
 }
