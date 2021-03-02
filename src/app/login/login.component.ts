@@ -33,8 +33,7 @@ export class LoginComponent implements OnInit {
        });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   loadUserDetails(){
     this.spotifyService.getUserProfile(this.access_token)
