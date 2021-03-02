@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { PortalComponent } from './portal/portal.component';
 import { SummaryComponent } from './summary/summary.component';
 import { FooterComponent } from './footer/footer.component';
+import { DragAndDropDirective } from './drag-and-drop.directive';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FooterComponent } from './footer/footer.component';
     LoginComponent,
     PortalComponent,
     SummaryComponent,
-    FooterComponent
+    FooterComponent,
+    DragAndDropDirective
   ],
   imports: [ BrowserModule, AppRoutingModule ],
   providers: [ ],
