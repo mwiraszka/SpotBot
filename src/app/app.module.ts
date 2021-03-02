@@ -9,6 +9,20 @@ import { PortalComponent } from './portal/portal.component';
 import { SummaryComponent } from './summary/summary.component';
 import { FooterComponent } from './footer/footer.component';
 import { AngularFireFunctionsModule, ORIGIN } from '@angular/fire/functions';
+import { HttpClientModule } from '@angular/common/http';
+import { environment } from '../environments/environment';
+
+export function getProviders() {
+  if (environment.production) {
+    return [
+      { provide: ORIGIN, useValue: 'https://spotbot-762b2.web.app' }
+    ]
+  } else {
+    return [
+      { provide: ORIGIN, useValue: 'http://localhost:5000' }
+    ]
+  }
+}
 
 @NgModule({
   declarations: [
@@ -22,11 +36,10 @@ import { AngularFireFunctionsModule, ORIGIN } from '@angular/fire/functions';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireFunctionsModule
+    AngularFireFunctionsModule,
+    HttpClientModule
   ],
-  providers: [
-    { provide: ORIGIN, useValue: 'https://spotbot-762b2.web.app' }
-  ],
+  providers: getProviders(),
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

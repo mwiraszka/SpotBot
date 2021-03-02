@@ -6,9 +6,37 @@ Live website is available at: https://spotbot-762b2.web.app/
 
 # Development details
 
+# System requirements
+
+Libraries verified to be working for:
+
+```
+❯ node -v
+v12.18.0
+❯ npm --version
+6.14.4
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+### Functions usage
+
+For Spotify login server side cloud functions:
+1. Download secrets: firebase functions:config:get > .runtimeconfig.json
+2. Test locally with emulator: firebase emulators:start
+
+The emulator is setup to load files from the `dist` folder so you will have to do a `ng build` to serve any latest local changes. This should only be used for testing app + functions behaviour locally. For all other development it is recommended to use `ng serve` development flow.
+
+## Functions deploy
+
+Deployment has been auto configured as part of the .github trigger. However, functions must still be deployed manually.
+
+Ensure that before any pull request creation `npm run build` is run which will update the package.json version.
+
+firebase deploy --only hosting
+firebase deploy --only functions
 
 ## Code scaffolding
 
