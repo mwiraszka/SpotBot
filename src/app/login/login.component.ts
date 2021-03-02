@@ -14,6 +14,9 @@ export class LoginComponent implements OnInit {
   refresh_token: string = "";
   queryObject: any;
 
+  username: string = "";
+  email: string = "";
+
   constructor(private actRoute: ActivatedRoute,
     private spotifyService: SpotifyService) {
     this.actRoute.queryParamMap.subscribe(params =>
@@ -37,6 +40,11 @@ export class LoginComponent implements OnInit {
     this.spotifyService.getUserProfile(this.access_token)
     .subscribe(result => {
       console.log("Found result details=" + JSON.stringify(result));
+      if (result) {
+        let spotifyProfileData = JSON.parse(JSON.stringify(result));
+        this.username = spotifyProfileData.display_name;
+        this.email = spotifyProfileData.email;
+      }
     });
   }
 }

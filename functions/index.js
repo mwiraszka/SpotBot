@@ -7,6 +7,7 @@ var stateKey = '__session';
 var clientId = functions.config().spotify.client_id; // Your client id
 var clientSecret = functions.config().spotify.client_secret; // Your secret
 var redirectUri = functions.config().spotify.redirect_uri; // Your redirect uri
+var localRedirect = functions.config().spotify.local_redirect; // Local helper
 
 /**
  * Generates a random string containing numbers and letters
@@ -56,7 +57,7 @@ exports.callback = functions.https.onRequest((req, res) => {
     console.log("Found req data state=" + state + " storedState=" + storedState+ " stateKey=" + stateKey);
     if (state === null || state !== storedState) {
         console.error("Kick out of flow due to missing cookie state, allow for now.");
-        // res.redirect('/#' +
+        // res.redirect(redirectUri + '/#' +
         //     querystring.stringify({
         //     error: 'state_mismatch'
         //     }));
@@ -81,25 +82,26 @@ exports.callback = functions.https.onRequest((req, res) => {
         var access_token = body.access_token,
             refresh_token = body.refresh_token;
 
-        var options = {
-          url: 'https://api.spotify.com/v1/me',
-          headers: { 'Authorization': 'Bearer ' + access_token },
-          json: true
-        };
+        //TODO: example of serverside request with access token.
+        // var options = {
+        //   url: 'https://api.spotify.com/v1/me',
+        //   headers: { 'Authorization': 'Bearer ' + access_token },
+        //   json: true
+        // };
 
-        // use the access token to access the Spotify Web API
-        request.get(options, function(error, response, body) {
-          console.log(body);
-        });
+        // // use the access token to access the Spotify Web API
+        // request.get(options, function(error, response, body) {
+        //   console.log(body);
+        // });
 
-        // we can also pass the token to the browser to make requests from there
-        res.redirect('/#' +
+        // pass the token to the browser to make requests from there
+        res.redirect(localRedirect + '/?' +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token
           }));
       } else {
-        res.redirect('/#' +
+        res.redirect(localRedirect + '/?' +
           querystring.stringify({
             error: 'invalid_token'
           }));

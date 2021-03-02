@@ -12,7 +12,7 @@ export class SpotifyService {
 
   getUserProfile(accessToken: string) {
     let httpOptions = {
-      headers: new HttpHeaders({ 'Authorization': "Bearer" + accessToken })
+      headers: new HttpHeaders({ 'Authorization': "Bearer " + accessToken })
     };
     return this.http.get(this.SPOTIFY_USER_ENDPOINT, httpOptions);
   }
