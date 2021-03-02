@@ -1,7 +1,7 @@
 import { Directive, Output, Input, EventEmitter, HostBinding, HostListener } from '@angular/core';
 
 @Directive({
-  selector: 'appDragAndDrop'
+  selector: '[appDragAndDrop]'
 })
 export class DragAndDropDirective {
   @Output() onFileDropped = new EventEmitter<any>();
@@ -24,7 +24,7 @@ export class DragAndDropDirective {
     this.opacity = '1'
   }
   //Drop listener
-  @HostListener('drop', ['$event']) public ondrop(evt: any) {
+  @HostListener('drop', ['$event']) public onDrop(evt: any) {
     evt.preventDefault();
     evt.stopPropagation();
     this.background = '#f5fcff'
