@@ -10,13 +10,12 @@ export class PortalComponent {
   files: any = [];
 
   uploadFile(event: any) {
-    console.log(event);
     for (let index = 0; index < event.length; index++) {
       const element = event[index];
       this.files.push(element.name);
     }  
   }
-  deleteAttachment(index: any) {
+  deleteAttachment(index: number) {
     this.files.splice(index, 1);
   }
 }
