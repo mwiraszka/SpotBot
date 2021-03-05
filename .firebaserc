@@ -1,5 +1,15 @@
 {
   "projects": {
-    "production": "spotbot-762b2"
+    "production": "spotbot-762b2",
+    "default": "spotbot-762b2"
+  },
+  "targets": {
+    "spotbot-762b2": {
+      "hosting": {
+        "spotbot": [
+          "spotbot-762b2"
+        ]
+      }
+    }
   }
 }

@@ -8,7 +8,23 @@ import { LoginComponent } from './login/login.component';
 import { PortalComponent } from './portal/portal.component';
 import { SummaryComponent } from './summary/summary.component';
 import { FooterComponent } from './footer/footer.component';
+
 import { DragAndDropDirective } from './drag-and-drop.directive';
+import { AngularFireFunctionsModule, ORIGIN } from '@angular/fire/functions';
+import { HttpClientModule } from '@angular/common/http';
+import { environment } from '../environments/environment';
+
+export function getProviders() {
+  if (environment.production) {
+    return [
+      { provide: ORIGIN, useValue: 'https://spotbot-762b2.web.app' }
+    ]
+  } else {
+    return [
+      { provide: ORIGIN, useValue: 'http://localhost:5001' }
+    ]
+  }
+}
 
 @NgModule({
   declarations: [
@@ -20,8 +36,13 @@ import { DragAndDropDirective } from './drag-and-drop.directive';
     FooterComponent,
     DragAndDropDirective
   ],
-  imports: [ BrowserModule, AppRoutingModule ],
-  providers: [ ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    AngularFireFunctionsModule,
+    HttpClientModule
+  ],
+  providers: getProviders(),
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
