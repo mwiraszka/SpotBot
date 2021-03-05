@@ -1,1 +1,39 @@
-h3 { text-align: center; }
+.dropzone {
+  background-image: url("../../assets/cloud.png");
+  background-repeat: no-repeat;
+  background-size: 100px;
+  background-position: center;
+  height: 200px;
+  width: 200px;
+  margin: 50px;
+  border: 2px dashed #1C8ADB;
+  border-radius: 10px;
+}
+
+.dropzone:hover {
+  cursor: pointer;
+  background-color: #9ecbec !important;
+  opacity: 0.8;
+}
+
+.files-list {
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+  margin: 50px;
+  background: #ffffff;
+  border: 1px dashed;
+  border-radius: 12px;
+  padding: 5px;
+  color: #1c8adb;
+}
+
+.files-list .delete-file {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.files-list .delete-file img {
+  width: 30px;
+}

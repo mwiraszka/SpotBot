@@ -8,6 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { PortalComponent } from './portal/portal.component';
 import { SummaryComponent } from './summary/summary.component';
 import { FooterComponent } from './footer/footer.component';
+
+import { DragAndDropDirective } from './drag-and-drop.directive';
 import { AngularFireFunctionsModule, ORIGIN } from '@angular/fire/functions';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
@@ -32,6 +34,7 @@ export function getProviders() {
     PortalComponent,
     SummaryComponent,
     FooterComponent,
+    DragAndDropDirective
   ],
   imports: [
     BrowserModule,
