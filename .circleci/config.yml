@@ -31,7 +31,7 @@ jobs:
 
       - run:
           name: Tar & Gzip compiled app
-          command: tar zcf dist.tar.gz dist/chordbomb
+          command: tar zcf dist.tar.gz dist/spotbot
 
       - store_artifacts:
           path: dist.tar.gz
