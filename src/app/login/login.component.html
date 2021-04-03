@@ -1,12 +1,12 @@
 <section>
-  <div class="login" *ngIf="!access_token">
+  <div class="login" *ngIf="!accessToken">
     <h2>Spotify Login</h2>
     <a href="/login" class="btn btn-primary">Log in with Spotify</a>
     <div *ngIf="error">
       <p>Unable to login, please try again.</p>
     </div>
   </div>
-  <div class="loggedIn" *ngIf="access_token">
+  <div class="loggedIn" *ngIf="accessToken">
     <p>Welcome!</p>
     <p>{{ username }} - {{ email }}</p>
     <p>Successfully logged in.</p>

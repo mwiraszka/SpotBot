@@ -1,49 +1,46 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { SpotifyService } from '../spotify.service';
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
+
+import { SpotifyService } from '../spotify.service'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  error: any
+  accessToken = ''
+  refreshToken = ''
+  queryObject: any
 
-  error: any;
-  access_token: string = "";
-  refresh_token: string = "";
-  queryObject: any;
+  username = ''
+  email = ''
 
-  username: string = "";
-  email: string = "";
-
-  constructor(private actRoute: ActivatedRoute,
-    private spotifyService: SpotifyService) {
-    this.actRoute.queryParamMap.subscribe(params =>
-      {
-          console.log(params);
-          this.queryObject = {...params.keys, ...params};
-          this.error = this.queryObject.params.error;
-          this.access_token = this.queryObject.params.access_token;
-          this.refresh_token = this.queryObject.params.refresh_token;
-          console.log("Found access token=" + this.access_token);
-          if (this.access_token) {
-            this.loadUserDetails();
-          }
-       });
+  constructor(private actRoute: ActivatedRoute, private spotifyService: SpotifyService) {
+    this.actRoute.queryParamMap.subscribe((params) => {
+      console.log(params)
+      this.queryObject = { ...params.keys, ...params }
+      this.error = this.queryObject.params.error
+      this.accessToken = this.queryObject.params.access_token
+      this.refreshToken = this.queryObject.params.refresh_token
+      console.log('Found access token=' + this.accessToken)
+      if (this.accessToken) {
+        this.loadUserDetails()
+      }
+    })
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
-  loadUserDetails(){
-    this.spotifyService.getUserProfile(this.access_token)
-    .subscribe(result => {
-      console.log("Found result details=" + JSON.stringify(result));
+  loadUserDetails() {
+    this.spotifyService.getUserProfile(this.accessToken).subscribe((result) => {
+      console.log('Found result details=' + JSON.stringify(result))
       if (result) {
-        let spotifyProfileData = JSON.parse(JSON.stringify(result));
-        this.username = spotifyProfileData.display_name;
-        this.email = spotifyProfileData.email;
+        const spotifyProfileData = JSON.parse(JSON.stringify(result))
+        this.username = spotifyProfileData.display_name
+        this.email = spotifyProfileData.email
       }
-    });
+    })
   }
 }

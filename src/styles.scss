@@ -1,28 +1,29 @@
 /* Global Spotbot font */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap');
-* { font-family: 'Lato', sans-serif; }
+* {
+  font-family: 'Lato', sans-serif;
+}
 
 /* Custom colors */
 :root {
-  --main-color:	hsl(141,71%,35%);
-  --main-color-dark: hsl(141,71%,28%);
+  --main-color: hsl(141, 71%, 35%);
+  --main-color-dark: hsl(141, 71%, 28%);
 }
-$near-white: hsl(240,17%,95%);
-$light-grey: hsla(0,0%,77%,40%);
-$dark-grey-1: hsla(0,0%,8%,85%);
-$dark-grey-2: hsla(0,0%,10%,85%);
-$near-black: hsl(0,0%,7%);
+$near-white: hsl(240, 17%, 95%);
+$light-grey: hsla(0, 0%, 77%, 40%);
+$dark-grey-1: hsla(0, 0%, 8%, 85%);
+$dark-grey-2: hsla(0, 0%, 10%, 85%);
+$near-black: hsl(0, 0%, 7%);
 
 body {
   padding: 10px;
-  background:
-    radial-gradient($light-grey, transparent 16%) 0 0,
+  background: radial-gradient($light-grey, transparent 16%) 0 0,
     radial-gradient($light-grey, transparent 16%) 4px 4px;
   background-color: $near-white;
   background-size: 8px 8px;
 }
 
-[class^="grid-item"] {
+[class^='grid-item'] {
   display: grid;
   align-items: center;
   justify-items: center;
@@ -40,15 +41,13 @@ body {
 }
 
 .textured-bg {
-  color: hsla(0,0%,95%,90%);
-  background:
-    linear-gradient(27deg, $dark-grey-1 5px, transparent 5px) 0 2px,
+  color: hsla(0, 0%, 95%, 90%);
+  background: linear-gradient(27deg, $dark-grey-1 5px, transparent 5px) 0 2px,
     linear-gradient(90deg, $dark-grey-2 10px, transparent 10px);
   background-color: $near-black;
   background-size: 10px 10px;
   border: 2px solid $dark-grey-2;
 }
-
 
 @media (min-width: 700px) {
   .wrapper {

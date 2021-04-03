@@ -1,5 +1,10 @@
 {
-  "extends": "tslint:recommended",
+  "extends": [
+    "tslint:recommended",
+    "tslint-etc",
+    "tslint-config-prettier",
+    "tslint-plugin-prettier"
+  ],
   "rulesDirectory": [
     "codelyzer"
   ],
@@ -29,8 +34,8 @@
     },
     "max-classes-per-file": false,
     "max-line-length": [
-      true,
-      140
+      false,
+      90
     ],
     "member-ordering": [
       true,
@@ -66,13 +71,13 @@
     ],
     "quotemark": [
       true,
-      "single"
+      "single",
+      "avoid-escape"
     ],
-    "semicolon": {
-      "options": [
-        "always"
-      ]
-    },
+    "semicolon": [
+      true,
+      "never"
+    ],
     "space-before-function-paren": {
       "options": {
         "anonymous": "never",
@@ -83,7 +88,7 @@
       }
     },
     "typedef": [
-      true,
+      false,
       "call-signature"
     ],
     "typedef-whitespace": {
@@ -147,6 +152,8 @@
       "element",
       "app",
       "kebab-case"
-    ]
+    ],
+    "no-unused-declaration": true,
+    "prettier": true
   }
 }

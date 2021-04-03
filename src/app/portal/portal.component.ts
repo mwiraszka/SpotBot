@@ -1,21 +1,20 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-portal',
   templateUrl: './portal.component.html',
-  styleUrls: ['./portal.component.scss']
+  styleUrls: ['./portal.component.scss'],
 })
 export class PortalComponent {
-
-  files: any = [];
+  files: any = []
 
   uploadFile(event: any) {
-    for (let index = 0; index < event.length; index++) {
-      const element = event[index];
-      this.files.push(element.name);
-    }  
+    for (const element of event) {
+      this.files.push(element)
+    }
   }
+
   deleteAttachment(index: number) {
-    this.files.splice(index, 1);
+    this.files.splice(index, 1)
   }
 }

@@ -1,11 +1,12 @@
 <section>
-  <div class="dropzone" (click)="fileInput.click()" appDragAndDrop (onFileDropped)="uploadFile($event)">
+  <div class="dropzone" (click)="fileInput.click()" appDragAndDrop
+    (onFileDropped)="uploadFile($event)">
     <input hidden type="file" #fileInput (change)="uploadFile($event)">
   </div>
-    <div class="files-list" *ngFor="let file of files;let i=index">
-      <p>{{ file }}</p>
-      <button class="delete-file" (click)="deleteAttachment(i)">
-        <img src="../../assets/garbage_bin.png">
-      </button>
-    </div>
+  <div class="files-list" *ngFor="let file of files;let i=index">
+    <p>{{ file }}</p>
+    <button class="delete-file" (click)="deleteAttachment(i)">
+      <img src="../../assets/garbage_bin.png">
+    </button>
+  </div>
 </section>
