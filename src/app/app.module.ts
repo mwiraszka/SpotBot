@@ -1,7 +1,9 @@
 import { HttpClientModule } from '@angular/common/http'
-import { NgModule } from '@angular/core'
+import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core'
 import { AngularFireFunctionsModule, ORIGIN } from '@angular/fire/functions'
 import { BrowserModule } from '@angular/platform-browser'
+import { Router } from '@angular/router'
+import * as Sentry from '@sentry/angular'
 
 import { environment } from '../environments/environment'
 import { AppRoutingModule } from './app-routing.module'
@@ -13,7 +15,7 @@ import { LoginComponent } from './login/login.component'
 import { PortalComponent } from './portal/portal.component'
 import { SummaryComponent } from './summary/summary.component'
 
-export function getProviders() {
+export function provideOrigin() {
   if (environment.production) {
     return [{ provide: ORIGIN, useValue: 'https://spotbot-762b2.web.app' }]
   } else {
@@ -37,7 +39,25 @@ export function getProviders() {
     AngularFireFunctionsModule,
     HttpClientModule,
   ],
-  providers: getProviders(),
+  providers: [
+    {
+      provide: ErrorHandler,
+      useValue: Sentry.createErrorHandler({
+        showDialog: true,
+      }),
+    },
+    {
+      provide: Sentry.TraceService,
+      deps: [Router],
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: () => () => {},
+      deps: [Sentry.TraceService],
+      multi: true,
+    },
+    provideOrigin(),
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
