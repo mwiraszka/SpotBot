@@ -31,7 +31,7 @@ jobs:
 
       - run:
           name: Tar & Gzip compiled app
-          command: tar zcf dist.tar.gz dist/spotbot
+          command: tar zcf dist.tar.gz dist
 
       - store_artifacts:
           path: dist.tar.gz
