@@ -1,27 +1,59 @@
-# Spotbot
+# SpotBot
 
-This web app is built with the Angular framework. SpotBot makes your life easier by allowing you to drop a music folder and allowing you to create a Spotify playlist with any songs found in Spotify.
+<i>Migrate your local music collection to Spotify</i><br>
+Live website available at:&nbsp;&nbsp;&nbsp; [spotbot-762b2.web.app/](https://spotbot-762b2.web.app/)
+***
+<br>
 
-Live website is available at: https://spotbot-762b2.web.app/
+SpotBot is a web application built using [Angular CLI](https://github.com/angular/angular-cli) that automates moving your local music collection to Spotify. The process consists of just two steps:
 
-# Development details
+1. <span style="border: 1px solid grey; border-radius: 4px; padding: 0 2px;">
+    Login</span> to your Spotify account through SpotBot's secure account validator.
+2. <span style="border: 1px solid grey; border-radius: 4px; padding: 0 2px;">
+    Drag & drop</span> your music into SpotBot's music portal.
 
-# System requirements
+And that's it – let us take care of the rest! SpotBot will create a playlist in your account and automatically populate it with all the songs it can find on Spotify. It will then give you a summary of which songs were added and which could not be found.
+<br><br>
+
+## Development details
+
+### System requirements
 
 Libraries verified to be working for:
 
 ```
 ❯ node -v
 v12.18.0
+
 ❯ npm --version
 6.14.4
 ```
 
-## Development server
+### Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-### Functions usage
+* Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+
+* Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+* Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+* Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+<br><br>
+
+## Spotify integration
+
+https://developer.spotify.com/documentation/web-api/quick-start/
+
+### Firebase functions
+Our backend server is powered via Firebase cloud functions.
+```
+firebase deploy --only hosting
+firebase deploy --only functions
+```
+
+### Using functions
 
 For Spotify login server side cloud functions:
 1. Download secrets: firebase functions:config:get > .runtimeconfig.json
@@ -29,41 +61,27 @@ For Spotify login server side cloud functions:
 
 The emulator is setup to load files from the `dist` folder so you will have to do a `ng build` to serve any latest local changes. This should only be used for testing app + functions behaviour locally. For all other development it is recommended to use `ng serve` development flow.
 
-## Functions deploy
+### Deploy functions
 
 Deployment has been auto configured as part of the .github trigger. However, functions must still be deployed manually.
 
 Ensure that before any pull request creation `npm run build` is run which will update the package.json version.
+<br><br>
 
-firebase deploy --only hosting
-firebase deploy --only functions
+## Versioning
 
-## Code scaffolding
+This project uses [SemVer](http://semver.org) for versioning.
+* **Version 1.0.0**:
+    * Currently in development
+<br><br>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Authors
 
-## Build
+* [Michal Wiraszka](https://github.com/mwiraszka)
+* [Juan Moreno](https://github.com/juansolu)
+<br><br>
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## License
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
-# Spotify Integration
-
-https://developer.spotify.com/documentation/web-api/quick-start/
-
-## Firebase functions
-
-Our backend server is powered via Firebase cloud functions.
-
-    firebase deploy --only functions
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+<br><br>
