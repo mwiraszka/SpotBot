@@ -4,10 +4,9 @@
   font-family: 'Lato', sans-serif;
 }
 
-
 /* SpotBot color palette & SVG textures */
 $spotbot-primary: #712a0a;
-$spotbot-accent: #04b194;
+$spotbot-accent: #068c76;
 $spotbot-warn: #ee1111;
 $spotbot-background: #c9c6c3;
 $spotbot-foreground: #180606;
@@ -20,7 +19,6 @@ body {
   background-image: url(assets/img/bg-texture-dots.svg);
 }
 
-
 /* SVG texture backgrounds & Flex layout for components*/
 #flex-wrapper {
   display: flex;
@@ -28,13 +26,12 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 4px;
+  gap: 2px;
   height: 100vh;
   padding: 10px;
 }
 
-
-/* HEADER COMPONENT */
+/* Header Component */
 app-header {
   flex: 0 1 100%;
   .hero #spotbot-logo-svg {
@@ -57,8 +54,7 @@ app-header {
   }
 }
 
-
-/* LOGIN & PORTAL COMPONENTS */
+/* Login & Portal Components */
 app-login {
   border-radius: 30% 2% 2% 2%;
 }
@@ -79,7 +75,7 @@ app-portal {
   color: $spotbot-white;
   background-color: $spotbot-foreground;
   background-image: url(assets/img/bg-texture-diamonds.svg);
-  border: ridge lighten($color: $spotbot-primary, $amount: 5%);
+  border: ridge lighten($color: $spotbot-primary, $amount: 10%);
   padding-top: 8px;
   h3 {
     font-size: 1.4em;
@@ -90,24 +86,18 @@ app-portal {
   }
 }
 
-
-/* FOOTER COMPONENT */
+/* Footer Component */
 app-footer {
   flex: 1 0 100%;
   padding: 1em;
   button {
     cursor: pointer;
-    --x: 50%;
-	  --y: 50%;
     padding: 0.2em 0.7em;
     margin-left: 10px;
-    color: white;
-    cursor: pointer;
-    outline: none;
+    background-color: $spotbot-black;
+    color: $spotbot-white;
     border-radius: 100px;
 
-    border: 3px solid transparent;
-    background: linear-gradient($spotbot-black, $spotbot-black) padding-box,
-                radial-gradient(farthest-corner at var(--x) var(--y), $spotbot-primary, $spotbot-accent) border-box;
+    border: 2px solid $spotbot-accent;
   }
 }

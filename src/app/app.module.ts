@@ -6,13 +6,13 @@ import { Router } from '@angular/router'
 import * as Sentry from '@sentry/angular'
 
 import { environment } from '../environments/environment'
+import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
+import { DragAndDropDirective } from './drag-and-drop.directive'
 import { FooterComponent } from './footer/footer.component'
 import { HeaderComponent } from './header/header.component'
 import { LoginComponent } from './login/login.component'
 import { PortalComponent } from './portal/portal.component'
-import { DragAndDropDirective } from './drag-and-drop.directive'
-import { AppRoutingModule } from './app-routing.module'
 
 export function provideOrigin() {
   if (environment.production) {
