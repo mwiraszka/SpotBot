@@ -3,10 +3,10 @@
     (onFileDropped)="uploadFile($event)">
     <input hidden type="file" #fileInput (change)="uploadFile($event)">
   </div>
-  <div class="files-list" *ngFor="let file of files;let i=index">
+  <div class="files-list" *ngFor="let file of files; let i=index">
     <p>{{ file }}</p>
     <button class="delete-file" (click)="deleteAttachment(i)">
-      <img src="../../assets/garbage_bin.png">
+      <img src="../../assets/img/garbage-bin.svg">
     </button>
   </div>
 </section>

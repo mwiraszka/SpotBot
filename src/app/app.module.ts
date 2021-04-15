@@ -6,14 +6,12 @@ import { Router } from '@angular/router'
 import * as Sentry from '@sentry/angular'
 
 import { environment } from '../environments/environment'
-import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { DragAndDropDirective } from './drag-and-drop.directive'
 import { FooterComponent } from './footer/footer.component'
 import { HeaderComponent } from './header/header.component'
 import { LoginComponent } from './login/login.component'
 import { PortalComponent } from './portal/portal.component'
-import { SummaryComponent } from './summary/summary.component'
 
 export function provideOrigin() {
   if (environment.production) {
@@ -29,13 +27,11 @@ export function provideOrigin() {
     HeaderComponent,
     LoginComponent,
     PortalComponent,
-    SummaryComponent,
     FooterComponent,
     DragAndDropDirective,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     AngularFireFunctionsModule,
     HttpClientModule,
   ],
