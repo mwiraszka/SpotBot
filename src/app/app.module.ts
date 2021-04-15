@@ -7,17 +7,18 @@ import * as Sentry from '@sentry/angular'
 
 import { environment } from '../environments/environment'
 import { AppComponent } from './app.component'
-import { DragAndDropDirective } from './drag-and-drop.directive'
 import { FooterComponent } from './footer/footer.component'
 import { HeaderComponent } from './header/header.component'
 import { LoginComponent } from './login/login.component'
 import { PortalComponent } from './portal/portal.component'
+import { DragAndDropDirective } from './drag-and-drop.directive'
+import { AppRoutingModule } from './app-routing.module'
 
 export function provideOrigin() {
   if (environment.production) {
     return [{ provide: ORIGIN, useValue: 'https://spotbot-762b2.web.app' }]
   } else {
-    return [{ provide: ORIGIN, useValue: 'http://localhost:5001' }]
+    return [{ provide: ORIGIN, useValue: 'http://localhost:4200' }]
   }
 }
 
@@ -32,6 +33,7 @@ export function provideOrigin() {
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     AngularFireFunctionsModule,
     HttpClientModule,
   ],

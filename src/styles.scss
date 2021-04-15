@@ -1,79 +1,113 @@
-/* Global Spotbot font */
+/* SpotBot font-family */
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300&display=swap');
 * {
   font-family: 'Lato', sans-serif;
 }
 
-// #ffc40d <-chosen color for Windows Metro and other UI when generating favicon package
 
-/* Custom colors */
-:root {
-  --main-color: hsl(141, 71%, 35%);
-  --main-color-dark: hsl(141, 71%, 28%);
-}
-$near-white: hsl(240, 17%, 95%);
-$light-grey: hsla(0, 0%, 77%, 40%);
-$dark-grey-1: hsla(0, 0%, 8%, 85%);
-$dark-grey-2: hsla(0, 0%, 10%, 85%);
-$near-black: hsl(0, 0%, 7%);
+/* SpotBot color palette & SVG textures */
+$spotbot-primary: #712a0a;
+$spotbot-accent: #04b194;
+$spotbot-warn: #ee1111;
+$spotbot-background: #c9c6c3;
+$spotbot-foreground: #180606;
+$spotbot-white: #fcf8f8;
+$spotbot-grey: #616161;
+$spotbot-black: #0e0e0e;
 
 body {
-  padding: 10px;
-  background: radial-gradient($light-grey, transparent 16%) 0 0,
-    radial-gradient($light-grey, transparent 16%) 4px 4px;
-  background-color: $near-white;
-  background-size: 8px 8px;
+  background-color: $spotbot-background;
+  background-image: url(assets/img/bg-texture-dots.svg);
 }
 
-[class^='grid-item'] {
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  border-radius: 8px;
-}
 
-.wrapper {
-  display: grid;
+/* SVG texture backgrounds & Flex layout for components*/
+#flex-wrapper {
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-content: center;
-  grid-template-columns: 1fr;
-  grid-template-rows: 220px 300px minmax(150px, 250px) 1fr 50px;
-  gap: 5px;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
   height: 100vh;
+  padding: 10px;
 }
 
-.textured-bg {
-  color: hsla(0, 0%, 95%, 90%);
-  background: linear-gradient(27deg, $dark-grey-1 5px, transparent 5px) 0 2px,
-    linear-gradient(90deg, $dark-grey-2 10px, transparent 10px);
-  background-color: $near-black;
-  background-size: 10px 10px;
-  border: 2px solid $dark-grey-2;
+
+/* HEADER COMPONENT */
+app-header {
+  flex: 0 1 100%;
+  .hero #spotbot-logo-svg {
+    max-width: 120px;
+    fill: $spotbot-foreground;
+  }
+  .hero #spotbot-text-svg {
+    max-width: 450px;
+    fill: $spotbot-black;
+    #letter-3-o,
+    #letter-6-o {
+      fill: $spotbot-primary;
+    }
+  }
+  h2 {
+    font-weight: 300;
+    font-size: calc(1.2em + 0.5vw);
+    padding-top: 2px;
+    padding-bottom: 30px;
+  }
 }
 
-@media (min-width: 700px) {
-  .wrapper {
-    grid-template-columns: 450px fit-content(600px);
-    grid-template-rows: 220px 300px 400px 50px;
+
+/* LOGIN & PORTAL COMPONENTS */
+app-login {
+  border-radius: 30% 2% 2% 2%;
+}
+
+app-portal {
+  border-radius: 2% 2% 30% 2%;
+  #portal-svg {
+    max-width: 420px;
+    fill: $spotbot-accent;
   }
-  .grid-item-1 {
-    grid-row: 1;
-    grid-column: 1/-1;
+}
+
+app-login,
+app-portal {
+  flex: 1 1 50%;
+  min-height: 400px;
+  max-width: 500px;
+  color: $spotbot-white;
+  background-color: $spotbot-foreground;
+  background-image: url(assets/img/bg-texture-diamonds.svg);
+  border: ridge lighten($color: $spotbot-primary, $amount: 5%);
+  padding-top: 8px;
+  h3 {
+    font-size: 1.4em;
   }
-  .grid-item-2 {
-    grid-row: 2;
-    grid-column: 1;
+  .step-number {
+    font-weight: bold;
+    padding-right: 10px;
   }
-  .grid-item-3 {
-    grid-row: 2;
-    grid-column: 2;
-  }
-  .grid-item-4 {
-    grid-row: 3;
-    grid-column: 1/-1;
-  }
-  .grid-item-5 {
-    grid-row: 4;
-    grid-column: 1/-1;
+}
+
+
+/* FOOTER COMPONENT */
+app-footer {
+  flex: 1 0 100%;
+  padding: 1em;
+  button {
+    cursor: pointer;
+    --x: 50%;
+	  --y: 50%;
+    padding: 0.2em 0.7em;
+    margin-left: 10px;
+    color: white;
+    cursor: pointer;
+    outline: none;
+    border-radius: 100px;
+
+    border: 3px solid transparent;
+    background: linear-gradient($spotbot-black, $spotbot-black) padding-box,
+                radial-gradient(farthest-corner at var(--x) var(--y), $spotbot-primary, $spotbot-accent) border-box;
   }
 }

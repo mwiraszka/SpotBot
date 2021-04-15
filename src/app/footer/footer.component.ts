@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss'],
+  template: `
+    © 2021 SpotBot <button (click)=onClickVersion()>version 0.2.0</button>
+  `,
 })
-export class FooterComponent implements OnInit {
-  constructor() {}
-  ngOnInit(): void {}
+export class FooterComponent {
+  onClickVersion(): void {
+    window.location.href = 'https://github.com/mwiraszka/SpotBot#readme'
+  }
 }

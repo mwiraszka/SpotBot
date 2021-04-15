@@ -77,8 +77,8 @@ This project uses [SemVer](http://semver.org) for versioning.
 
 ## Authors
 
-* [Michal Wiraszka](https://github.com/mwiraszka)
 * [Juan Moreno](https://github.com/juansolu)
+* [Michal Wiraszka](https://github.com/mwiraszka)
 <br><br>
 
 ## License
