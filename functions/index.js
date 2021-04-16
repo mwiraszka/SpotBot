@@ -63,6 +63,7 @@ exports.callback = functions.https.onRequest((req, res) => {
         //     }));
     }
     res.clearCookie(stateKey);
+    // TODO: is redirect_uri really needed?
     var authOptions = {
       url: 'https://accounts.spotify.com/api/token',
       form: {
@@ -95,6 +96,7 @@ exports.callback = functions.https.onRequest((req, res) => {
         // });
 
         // pass the token to the browser to make requests from there
+        // Redirect to spot bot the token result.
         res.redirect(localRedirect + '/?' +
           querystring.stringify({
             access_token: access_token,

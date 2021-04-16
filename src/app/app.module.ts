@@ -18,7 +18,7 @@ export function provideOrigin() {
   if (environment.production) {
     return [{ provide: ORIGIN, useValue: 'https://spotbot-762b2.web.app' }]
   } else {
-    return [{ provide: ORIGIN, useValue: 'http://localhost:4200' }]
+    return [{ provide: ORIGIN, useValue: 'http://localhost:5001' }]
   }
 }
 
