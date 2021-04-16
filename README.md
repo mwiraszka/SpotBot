@@ -46,6 +46,9 @@ v12.18.0
 
 https://developer.spotify.com/documentation/web-api/quick-start/
 
+[Spotify Architecture - Powerpoint](https://docs.google.com/presentation/d/1qqGzH50ScbGdxuPcqgEPWwTDu0lu40HsVcIGo_vSNFk/edit)
+
+
 ### Firebase functions
 Our backend server is powered via Firebase cloud functions.
 ```

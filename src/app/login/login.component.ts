@@ -1,6 +1,7 @@
 import { Component } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 
+import { spotifyCredentials } from '../../environments/secrets/spotify-credentials'
 import { SpotifyService } from '../spotify.service'
 
 @Component({
@@ -8,6 +9,11 @@ import { SpotifyService } from '../spotify.service'
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
+  onLoginClicked() {
+    console.log(spotifyCredentials.clientId)
+  }
+
+
   error: any
   accessToken = ''
   refreshToken = ''
@@ -30,6 +36,8 @@ export class LoginComponent {
     })
   }
 
+
+
   loadUserDetails() {
     this.spotifyService.getUserProfile(this.accessToken).subscribe((result) => {
       console.log('Found result details=' + JSON.stringify(result))
@@ -40,4 +48,7 @@ export class LoginComponent {
       }
     })
   }
+
+
+
 }
