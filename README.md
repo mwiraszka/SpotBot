@@ -56,6 +56,8 @@ firebase deploy --only hosting
 firebase deploy --only functions
 ```
 
+- Note: we use `OnCall` [Firebase functions](https://firebase.google.com/docs/functions/callable) type.
+
 ### Using functions
 
 For Spotify login server side cloud functions:
