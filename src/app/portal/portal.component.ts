@@ -1,19 +1,19 @@
-import { Component } from '@angular/core'
+import { Component, EventEmitter, Output } from '@angular/core'
 
 @Component({
   selector: 'app-portal',
   templateUrl: './portal.component.html',
 })
 export class PortalComponent {
-  files: any = []
+  @Output() filesAdded = new EventEmitter<File[]>()
 
-  uploadFile(event: any) {
-    for (const element of event) {
-      this.files.push(element)
-    }
+  onDrop(droppedFiles: File[]) {
+    console.log(droppedFiles[0])
+    this.filesAdded.emit(droppedFiles)
   }
 
-  deleteAttachment(index: number) {
-    this.files.splice(index, 1)
+  onFileUpload(selectedFiles: File) {
+    console.log(selectedFiles)
+    this.filesAdded.emit([selectedFiles])
   }
 }

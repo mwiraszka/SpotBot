@@ -2,13 +2,15 @@ import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-root',
-  template: `
-    <main id="flex-wrapper">
-      <app-header></app-header>
-      <app-login></app-login>
-      <app-portal></app-portal>
-      <app-footer></app-footer>
-    </main>
-  `,
+  templateUrl: './app.component.html',
 })
-export class AppComponent {}
+export class AppComponent {
+  newFiles: File[] = []
+  moveFilesToList(files: File[]) {
+    this.newFiles = files
+  }
+
+  onClickVersion(): void {
+    window.location.href = 'https://github.com/mwiraszka/SpotBot#readme'
+  }
+}

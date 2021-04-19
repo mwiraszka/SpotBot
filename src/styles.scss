@@ -5,99 +5,182 @@
 }
 
 /* SpotBot color palette & SVG textures */
-$spotbot-primary: #712a0a;
-$spotbot-accent: #068c76;
+$spotbot-primary: #021e24;
+$spotbot-accent: #308c09;
 $spotbot-warn: #ee1111;
 $spotbot-background: #c9c6c3;
-$spotbot-foreground: #180606;
-$spotbot-white: #fcf8f8;
-$spotbot-grey: #616161;
+$spotbot-white: #e3e3e3;
+$spotbot-grey: #2d2d2d;
 $spotbot-black: #0e0e0e;
 
+/* Body and Header styles */
 body {
   background-color: $spotbot-background;
   background-image: url(assets/img/bg-texture-dots.svg);
 }
 
-/* SVG texture backgrounds & Flex layout for components*/
-#flex-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  gap: 2px;
-  height: 100vh;
-  padding: 10px;
+main {
+  min-height: calc(100vh - 100px); /* Push Footer down */
 }
 
-/* Header Component */
 app-header {
-  flex: 0 1 100%;
-  .hero #spotbot-logo-svg {
-    max-width: 120px;
-    fill: $spotbot-foreground;
-  }
-  .hero #spotbot-text-svg {
-    max-width: 450px;
-    fill: $spotbot-black;
-    #letter-3-o,
-    #letter-6-o {
-      fill: $spotbot-primary;
+  display: block;
+  background-color: $spotbot-white;
+  border-top: 2px solid darken($color: $spotbot-white, $amount: 10%);
+  border-bottom: 2px solid darken($color: $spotbot-white, $amount: 10%);
+  padding: 8px 0 4px 10px;
+  #spotbot-logo-svg {
+    fill: $spotbot-primary;
+    width: 180px;
+    #headphones-path {
+      fill: $spotbot-accent;
+      stroke: darken($color: $spotbot-accent, $amount: 30%);
     }
   }
-  h2 {
-    font-weight: 300;
-    font-size: calc(1.2em + 0.5vw);
-    padding-top: 2px;
-    padding-bottom: 30px;
+}
+
+h1 {
+  margin: 40px 0 10px 0;
+  text-align: center;
+  font-weight: 300;
+  font-size: calc(1.5em + 0.5vw);
+  img {
+    margin-left: 4px;
+    margin-bottom: 2px;
+    width: 140px;
   }
 }
 
-/* Login & Portal Components */
-app-login {
-  border-radius: 30% 2% 2% 2%;
-}
-
-app-portal {
-  border-radius: 2% 2% 30% 2%;
-  #portal-svg {
-    max-width: 420px;
-    fill: $spotbot-accent;
-  }
-}
-
+/* Login, Portal & SongList Components - common styles */
 app-login,
-app-portal {
-  flex: 1 1 50%;
-  min-height: 400px;
-  max-width: 500px;
+app-portal,
+app-song-list {
+  padding: 5px;
   color: $spotbot-white;
-  background-color: $spotbot-foreground;
-  background-image: url(assets/img/bg-texture-diamonds.svg);
-  border: ridge lighten($color: $spotbot-primary, $amount: 10%);
-  padding-top: 8px;
-  h3 {
+  background-color: $spotbot-primary;
+  border: ridge darken($color: $spotbot-accent, $amount: 5%);
+  border-radius: 2em / 0.3em;
+  h2 {
     font-size: 1.4em;
   }
   .step-number {
-    font-weight: bold;
-    padding-right: 10px;
+    font-weight: bolder;
+    padding-right: 8px;
+    font-size: 120%;
+  }
+}
+
+/* Flex Container around Login & Portal Components */
+#flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  text-align: center;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 10px;
+}
+
+/* Login Component */
+app-login {
+  flex: 1 1 50%;
+  max-width: 600px;
+  min-height: 210px;
+  .login-area {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Portal Component */
+app-portal {
+  flex: 1 1 50%;
+  max-width: 600px;
+  min-height: 210px;
+  .dropzone {
+    display: inline-block;
+    background-color: $spotbot-primary;
+    border-radius: 20px;
+    .svg.portal {
+      mask: url(assets/img/portal.svg);
+      display: inline-block;
+      width: 110px;
+      height: 86px;
+      background: $spotbot-accent;
+      mask-size: cover;
+    }
+    .svg.portal:hover {
+      cursor: pointer;
+      background: darken($color: $spotbot-accent, $amount: 10%);
+    }
+  }
+  p {
+    padding-top: 10px;
+  }
+}
+
+/* SongList Component */
+app-song-list {
+  display: block;
+  margin: -6px auto;
+  text-align: center;
+  max-width: 1204px; /* Login width + portal width + flex gap amount */
+  .song-details {
+    display: flex;
+    justify-content: space-between;
+    width: auto;
+    margin: 5px;
+    padding: 2px;
+    color: $spotbot-white;
+    .delete-button {
+      background: transparent;
+      border: none;
+      padding: 0;
+      .svg.garbage-bin {
+        mask: url(assets/img/garbage-bin.svg);
+        display: inline-block;
+        width: 15px;
+        height: 20px;
+        background: $spotbot-warn;
+        mask-size: contain;
+      }
+      .svg.garbage-bin:hover {
+        cursor: pointer;
+        background: darken($color: $spotbot-warn, $amount: 10%);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 620px) {
+  /* Match side-margins of Login and Portal Components now that
+     full width of viewport is used */
+  app-song-list {
+    margin: -6px 10px;
+  }
+}
+@media only screen and (max-width: 1223px) {
+  /* Login & Portal Components will collapse under 1224px
+     (1200px total width + 4px gap + 20px total padding) */
+  app-song-list {
+    max-width: 600px;
   }
 }
 
 /* Footer Component */
-app-footer {
-  flex: 1 0 100%;
-  padding: 1em;
+footer {
+  padding-top: 50px;
+  height: 50px;
+  text-align: center;
+  margin-top: auto;
   button {
     cursor: pointer;
-    padding: 0.2em 0.7em;
+    padding: 0.1em 0.5em;
     margin-left: 10px;
-    background-color: $spotbot-black;
+    background-color: $spotbot-primary;
     color: $spotbot-white;
-    border-radius: 100px;
-
-    border: 2px solid $spotbot-accent;
+    border-radius: 10px;
   }
 }

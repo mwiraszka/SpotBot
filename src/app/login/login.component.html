@@ -1,6 +1,8 @@
-<h3><span class="step-number">Step 1.</span> Login to Spotify</h3>
-<div class="login" *ngIf="!accessToken">
-  <a href="/login" class="btn btn-primary">Login</a>
+<h2><span class="step-number">1.</span> Login to Spotify</h2>
+<div class="login-area" *ngIf="!accessToken">
+  <div class="button">
+    <a href="/login" class="btn btn-primary">Login</a>
+  </div>
   <div *ngIf="error">
     <p>Unable to login, please try again.</p>
   </div>

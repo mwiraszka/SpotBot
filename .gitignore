@@ -1,9 +1,6 @@
 /wip
 .runtimeconfig.json
 
-# Spotify credentials
-/environments/secrets
-
 # Compiled output
 /dist
 /tmp

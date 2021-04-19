@@ -3,35 +3,33 @@ import { Directive, EventEmitter, HostBinding, HostListener, Output } from '@ang
 @Directive({
   selector: '[appDragAndDrop]',
 })
-export class DragAndDropDirective {
-  @Output() fileDropped = new EventEmitter<any>()
+export class AppDragAndDropDirective {
+  @Output('droppedFiles') files: EventEmitter<File[]> = new EventEmitter()
+  @HostBinding('style.border') public border = '2px dotted transparent'
 
-  @HostBinding('style.background-color') private background = '#f5fcff'
-  @HostBinding('style.opacity') private opacity = '1'
+  @HostListener('dragover', ['$event']) public onDragOver(e: DragEvent) {
+    e.preventDefault()
+    e.stopPropagation()
+    this.border = '2px dotted white'
+  }
 
-  // Dragover listener
-  @HostListener('dragover', ['$event']) onDragOver(evt: any) {
-    evt.preventDefault()
-    evt.stopPropagation()
-    this.background = '#9ecbec'
-    this.opacity = '0.8'
+  @HostListener('dragleave', ['$event']) public onDragLeave(e: DragEvent) {
+    e.preventDefault()
+    e.stopPropagation()
+    this.border = '2px dotted transparent'
   }
-  // Dragleave listener
-  @HostListener('dragleave', ['$event']) public onDragLeave(evt: any) {
-    evt.preventDefault()
-    evt.stopPropagation()
-    this.background = '#f5fcff'
-    this.opacity = '1'
-  }
-  // Drop listener
-  @HostListener('drop', ['$event']) public onDrop(evt: any) {
-    evt.preventDefault()
-    evt.stopPropagation()
-    this.background = '#f5fcff'
-    this.opacity = '1'
-    const files = evt.dataTransfer.files
+
+  @HostListener('drop', ['$event']) public onDrop(e: DragEvent) {
+    e.preventDefault()
+    e.stopPropagation()
+    this.border = '2px dotted transparent'
+
+    const files: File[] = []
+    for (let i = 0; i < e.dataTransfer!.files.length; i++) {
+      files.push(e.dataTransfer!.files[i])
+    }
     if (files.length > 0) {
-      this.fileDropped.emit(files)
+      this.files.emit(files)
     }
   }
 }
