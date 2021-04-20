@@ -1,16 +1,29 @@
+<header>
+  <app-spotbot-logo></app-spotbot-logo>
+</header>
+
 <main>
-  <app-header></app-header>
   <h1>Migrate your local music collection to
     <img src="../../assets/img/spotify-logo.svg" class="svg spotify-logo" alt="Spotify">
   </h1>
-  <section id="flex-container">
-    <app-login></app-login>
-    <app-portal (filesAdded)="moveFilesToList($event)"></app-portal>
-  </section>
-  <section>
+  <div id="flex-container">
+    <section id="step-1">
+      <aside>
+        Throw songs into the portal and SpotBot will search for them on Spotify.<br>
+        Review your list and click confirm when you're ready to have SpotBot migrate the songs to a new playlist in your account.
+      </aside>
+      <app-login class="numbered-section"></app-login>
+    </section>
+    <section id="step-2" class="numbered-section">
+      <app-portal (filesEmitter)="moveFilesToList($event)"></app-portal>
+    </section>
+  </div>
+  <section id="step-3" class="numbered-section">
     <app-song-list [files]="newFiles"></app-song-list>
   </section>
 </main>
+
 <footer>
-  © 2021 SpotBot <button (click)="onClickVersion()">version 0.3.0</button>
+  <small>© 2021 SpotBot<mark>.ca </mark></small>
+  <button (click)="onClickVersion()">version 0.4.0</button>
 </footer>

@@ -1,7 +1,12 @@
 <h2><span class="step-number">2.</span> Add Songs</h2>
-<div class="dropzone" appDragAndDrop (click)="fileInput.click()"
-  (droppedFiles)="onDrop($event)">
+<div class="dropzone" appDragAndDrop (droppedFiles)="onDrop($event)" (click)="fileInput.click()">
   <span class="svg portal"></span>
-  <input hidden type="file" #fileInput (change)="onFileUpload($any($event.target))">
+  <input
+    type="file"
+    #fileInput
+    hidden
+    ng2FileSelect
+    [uploader]="uploader"
+    multiple />
 </div>
-<p>Click on portal or drag & drop</p>
+<p>Click to browse or drag & drop into portal</p>
