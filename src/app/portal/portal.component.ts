@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core'
+import { Component } from '@angular/core'
 import { FileItem, FileUploader } from 'ng2-file-upload'
 
 import { SongsStoreService } from '../songs-store.service'
@@ -11,7 +11,6 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/'
   templateUrl: './portal.component.html',
 })
 export class PortalComponent {
-  @Output() filesEmitter = new EventEmitter<File[]>()
   uploader: FileUploader
   hasFilesOverDropzone: boolean
 

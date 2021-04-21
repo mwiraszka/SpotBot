@@ -1,24 +1,16 @@
-import { Component, Input } from '@angular/core'
+import { Component } from '@angular/core'
 
-import { Song } from '../song.model'
+import { SongsStoreService } from '../songs-store.service'
 
 @Component({
   selector: 'app-song-list',
   templateUrl: './song-list.component.html',
 })
 export class SongListComponent {
-  @Input() files: File[] = []
-  songs: Song[]
 
-  constructor() {
-    this.songs = []
-  }
-
-  addSong(newFiles: File[]) {
-    this.files.push(...newFiles)
-  }
+  constructor(public songsStore: SongsStoreService) {}
 
   deleteSong(index: number) {
-    this.files.splice(index, 1)
+    this.songsStore.removeSong(index)
   }
 }

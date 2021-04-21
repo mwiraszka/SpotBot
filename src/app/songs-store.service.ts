@@ -24,21 +24,24 @@ export class SongsStoreService {
     this._songs.next(val)
   }
 
-  // Assign a new array of songs by duplicating current array and adding a new song to it
+  /* Retrieve all possible song information from inputted File object and push song as a
+  Song object by duplicating the current array and adding a new Song to it */
   async addSong(file: File) {
     this.songs = [
       ...this.songs,
       {
-        id: this.songs.length + 1,
-        fileName: 'song',
-        fileExtension: 'extension',
+        id: this.songs.length,
+        fileName: file.name.slice(0, file.name.lastIndexOf('.')),
+        fileFormat: file.name.slice(file.name.lastIndexOf('.') + 1),
       },
     ]
   }
 
-  // Remove song from array using its id
-  async removeSong(id: number) {
-    const song = this.songs.find((s) => s.id === id)
-    this.songs = this.songs.filter((song) => song.id !== id)
+  /* Update the immutable 'songs' array by disassembling the parts of the array before and
+  after the removed item, and rebuilding the array, ensuring no gaps in the indices */
+  async removeSong(index: number) {
+    this.songs = [
+      ...this.songs.slice(0, index), ...this.songs.slice(index + 1)
+    ]
   }
 }

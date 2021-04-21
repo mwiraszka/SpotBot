@@ -1,15 +1,15 @@
 <h2><span class="step-number">3.</span> Confirm Migration</h2>
 
-<div class="song-details" *ngFor="let song of songs; let i=index">
-  <p>{{ song.fileName }}</p>
+<div class="song-details" *ngFor="let song of songsStore.songs; let i=index">
+  <p>{{ song.fileName }} - {{ song.fileFormat }}</p>
   <button class="delete-button" (click)="deleteSong(i)">
-    <span class="svg garbage-bin"></span>
+    <span class="garbage-bin-icon"></span>
   </button>
 </div>
 
 <div class="confirm-area">
-  <div *ngIf="songs.length > 0">
-    <p>Add {{ songs.length }} songs to playlist "SpotBot-18-04-2021"</p>
+  <div *ngIf="songsStore.songs.length > 0">
+    <p>Add {{ songsStore.songs.length }} songs to playlist "SpotBot-18-04-2021"</p>
   </div>
   <a href="/login" class="btn btn-success disabled">Confirm</a>
 </div>

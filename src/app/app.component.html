@@ -16,11 +16,11 @@
       <app-login class="numbered-box"></app-login>
     </section>
     <section id="step-2" class="numbered-box">
-      <app-portal (filesEmitter)="moveFilesToList($event)"></app-portal>
+      <app-portal></app-portal>
     </section>
   </div>
   <section id="step-3" class="numbered-box">
-    <app-song-list [files]="newFiles"></app-song-list>
+    <app-song-list></app-song-list>
   </section>
 </main>
 
