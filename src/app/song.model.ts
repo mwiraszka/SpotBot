@@ -1,4 +1,5 @@
-export class Song {
-  fileName: string = ''
-  fileExtension: string = ''
+export interface Song {
+  id: number
+  fileName: string
+  fileExtension: string
 }

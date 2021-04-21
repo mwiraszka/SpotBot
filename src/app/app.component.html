@@ -7,23 +7,28 @@
     <img src="../../assets/img/spotify-logo.svg" class="svg spotify-logo" alt="Spotify">
   </h1>
   <div id="flex-container">
-    <section id="step-1">
+    <section id="aside-and-step-1">
       <aside>
-        Throw songs into the portal and SpotBot will search for them on Spotify.<br>
-        Review your list and click confirm when you're ready to have SpotBot migrate the songs to a new playlist in your account.
+        Throw songs into the portal and SpotBot will search for them on Spotify. Review
+        your list and click confirm when you're ready to have SpotBot migrate the songs to
+        a new playlist in your account.
       </aside>
-      <app-login class="numbered-section"></app-login>
+      <app-login class="numbered-box"></app-login>
     </section>
-    <section id="step-2" class="numbered-section">
+    <section id="step-2" class="numbered-box">
       <app-portal (filesEmitter)="moveFilesToList($event)"></app-portal>
     </section>
   </div>
-  <section id="step-3" class="numbered-section">
+  <section id="step-3" class="numbered-box">
     <app-song-list [files]="newFiles"></app-song-list>
   </section>
 </main>
 
 <footer>
-  <small>© 2021 SpotBot<mark>.ca </mark></small>
-  <button (click)="onClickVersion()">version 0.4.0</button>
+  <small>
+    © 2021 SpotBot<mark>.ca </mark>
+  </small>
+  <address>
+    <button (click)="onClickVersion()">version 0.4.0</button>
+  </address>
 </footer>

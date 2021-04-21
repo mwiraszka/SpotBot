@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core'
 import { FileItem, FileUploader } from 'ng2-file-upload'
 
+import { SongsStoreService } from '../songs-store.service'
+
 // API used for File Upload through ng2-file-upload
 const URL = 'https://evening-anchorage-3159.herokuapp.com/api/'
 
@@ -10,23 +12,13 @@ const URL = 'https://evening-anchorage-3159.herokuapp.com/api/'
 })
 export class PortalComponent {
   @Output() filesEmitter = new EventEmitter<File[]>()
-  uploader: FileUploader;
-  hasOverDropzone: boolean;
+  uploader: FileUploader
+  hasFilesOverDropzone: boolean
 
-  onDrop(droppedFiles: File[]) {
-    console.log('droppedFiles[0]: ...........')
-    console.log(droppedFiles[0])
-    this.filesEmitter.emit(droppedFiles)
-  }
-  onFileUpload(selectedFiles: File) {
-    console.log(selectedFiles)
-    this.filesEmitter.emit([selectedFiles])
-  }
-
-  constructor (){
+  constructor(public songsStore: SongsStoreService) {
     this.uploader = new FileUploader({
       url: URL,
-      disableMultipart: true, // 'DisableMultipart' must be 'true' for formatDataFunction to be called
+      disableMultipart: true, // Must be 'true' for formatDataFunction to be called
       formatDataFunctionIsAsync: true,
       formatDataFunction: async (item: FileItem) => {
         return new Promise((resolve, reject) => {
@@ -37,12 +29,23 @@ export class PortalComponent {
             date: new Date(),
           })
         })
-      }
+      },
     })
-    this.hasOverDropzone = false
+    this.hasFilesOverDropzone = false
   }
 
-  public overDropzone(evt: any): void {
-    this.hasOverDropzone = evt;
+  onDrop(droppedFiles: File[]) {
+    for (const file of droppedFiles) {
+      this.songsStore.addSong(file)
+    }
+  }
+  onFileUpload(selectedFiles: File[]) {
+    for (const file of selectedFiles) {
+      this.songsStore.addSong(file)
+    }
+  }
+
+  overDropzone(evt: any): void {
+    this.hasFilesOverDropzone = evt
   }
 }

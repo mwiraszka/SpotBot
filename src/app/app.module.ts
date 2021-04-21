@@ -9,11 +9,12 @@ import { FileUploadModule } from 'ng2-file-upload'
 import { environment } from '../environments/environment'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
-import { SpotbotLogoComponent } from './spotbot-logo/spotbot-logo.component'
-import { LoginComponent } from './login/login.component'
 import { AppDragAndDropDirective } from './drag-and-drop.directive'
+import { LoginComponent } from './login/login.component'
 import { PortalComponent } from './portal/portal.component'
 import { SongListComponent } from './song-list/song-list.component'
+import { SongsStoreService } from './songs-store.service'
+import { SpotbotLogoComponent } from './spotbot-logo/spotbot-logo.component'
 
 export function provideOrigin() {
   if (environment.production) {
@@ -39,6 +40,7 @@ export function provideOrigin() {
     FileUploadModule,
   ],
   providers: [
+    SongsStoreService,
     {
       provide: ErrorHandler,
       useValue: Sentry.createErrorHandler({
