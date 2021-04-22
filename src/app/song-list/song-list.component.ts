@@ -7,10 +7,9 @@ import { SongsStoreService } from '../songs-store.service'
   templateUrl: './song-list.component.html',
 })
 export class SongListComponent {
-
   constructor(public songsStore: SongsStoreService) {}
 
-  deleteSong(index: number) {
+  onGarbageBinClicked(index: number) {
     this.songsStore.removeSong(index)
   }
 }

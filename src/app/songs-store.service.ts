@@ -9,10 +9,9 @@ import { Song } from './song.model'
 })
 export class SongsStoreService {
   /* Set the initial state in BehaviorSubject's constructor - no one outside the Store
-  should have access to the BehaviorSubject since it has the write rights */
+  should have access to the BehaviorSubject since it has the write rights;
+  expose the observable part of the _songs subject (the readonly stream) */
   private readonly _songs = new BehaviorSubject<Song[]>([])
-
-  // Expose the observable part of the _songs subject (the readonly stream)
   readonly songs$ = this._songs.asObservable()
 
   // Getter returns last value emitted in _songs subject
@@ -24,24 +23,28 @@ export class SongsStoreService {
     this._songs.next(val)
   }
 
-  /* Retrieve all possible song information from inputted File object and push song as a
-  Song object by duplicating the current array and adding a new Song to it */
+  private acceptedExtensions: string[] = ['.mp3', '.wav', '.aiff']
+
+  /* Check if valid file format; if so, retrieve song info from inputted File object and
+  push as a Song object by duplicating the current array and adding a new Song to it */
   async addSong(file: File) {
-    this.songs = [
-      ...this.songs,
-      {
-        id: this.songs.length,
-        fileName: file.name.slice(0, file.name.lastIndexOf('.')),
-        fileFormat: file.name.slice(file.name.lastIndexOf('.') + 1),
-      },
-    ]
+    const fileExtension = file.name.slice(file.name.lastIndexOf('.'))
+    if (this.acceptedExtensions.includes(fileExtension)) {
+      this.songs = [
+        ...this.songs,
+        {
+          id: this.songs.length,
+          fileName: file.name.slice(0, file.name.lastIndexOf('.')),
+          fileFormat: file.name.slice(file.name.lastIndexOf('.') + 1),
+        },
+      ]
+    }
   }
 
-  /* Update the immutable 'songs' array by disassembling the parts of the array before and
-  after the removed item, and rebuilding the array, ensuring no gaps in the indices */
+  /* 'songs' array is immutable, so first spread the parts of the array that come before
+  and after the removed item; rebuild the array omitting the removed item, which
+  ensures no gaps in the array's indices */
   async removeSong(index: number) {
-    this.songs = [
-      ...this.songs.slice(0, index), ...this.songs.slice(index + 1)
-    ]
+    this.songs = [...this.songs.slice(0, index), ...this.songs.slice(index + 1)]
   }
 }
