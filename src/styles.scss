@@ -4,70 +4,63 @@
   font-family: 'Lato', sans-serif;
 }
 
-/* SpotBot color palette & SVG textures */
-$spotbot-primary: #021e24;
+/* SpotBot color palette */
+$spotbot-primary: #120101;
 $spotbot-accent: #308c09;
 $spotbot-warn: #ee1111;
 $spotbot-background: #c9c6c3;
 $spotbot-white: #e3e3e3;
+$spotbot-white-transparent: #e3e3e323;
 $spotbot-grey: #2d2d2d;
 $spotbot-black: #0e0e0e;
 
-/* Body and Header styles */
+// Use SVG texture - second color defined within source SVG code
 body {
   background-color: $spotbot-background;
-  background-image: url(assets/img/bg-texture-dots.svg);
+  background-image: url(./assets/img/bg-texture-dots.svg);
 }
 
-main {
-  min-height: calc(100vh - 100px); /* Push Footer down */
-}
-
-app-header {
+header app-spotbot-logo {
   display: block;
+  height: 50px;
+  padding: 5px 20px; // manually adjust to centre vertically
   background-color: $spotbot-white;
-  border-top: 2px solid darken($color: $spotbot-white, $amount: 10%);
   border-bottom: 2px solid darken($color: $spotbot-white, $amount: 10%);
-  padding: 8px 0 4px 10px;
   #spotbot-logo-svg {
-    fill: $spotbot-primary;
-    width: 180px;
+    width: 175px;
     #headphones-path {
       fill: $spotbot-accent;
-      stroke: darken($color: $spotbot-accent, $amount: 30%);
+    }
+    #dog-path,
+    #spotbot-text {
+      fill: $spotbot-black;
+    }
+    #dot-ca-text {
+      fill: $spotbot-accent;
     }
   }
 }
 
-h1 {
-  margin: 40px 0 10px 0;
+// Push footer down (main height = 100% viewport height - header - footer)
+main {
+  padding-bottom: 60px;
+  min-height: calc(100vh - 50px - 32px);
+}
+
+main h1 {
+  color: $spotbot-black;
+  height: 90px;
+  padding-top: 40px;
+  padding-bottom: 80px;
   text-align: center;
   font-weight: 300;
   font-size: calc(1.5em + 0.5vw);
-  img {
-    margin-left: 4px;
-    margin-bottom: 2px;
-    width: 140px;
-  }
 }
 
-/* Login, Portal & SongList Components - common styles */
-app-login,
-app-portal,
-app-song-list {
-  padding: 5px;
-  color: $spotbot-white;
-  background-color: $spotbot-primary;
-  border: ridge darken($color: $spotbot-accent, $amount: 5%);
-  border-radius: 2em / 0.3em;
-  h2 {
-    font-size: 1.4em;
-  }
-  .step-number {
-    font-weight: bolder;
-    padding-right: 8px;
-    font-size: 120%;
-  }
+#spotify-logo {
+  margin-left: 4px;
+  margin-bottom: 2px;
+  width: 140px;
 }
 
 /* Flex Container around Login & Portal Components */
@@ -81,106 +74,211 @@ app-song-list {
   padding: 10px;
 }
 
-/* Login Component */
-app-login {
-  flex: 1 1 50%;
-  max-width: 600px;
-  min-height: 210px;
-  .login-area {
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Common styles for Login, Portal & Song List Components */
+.numbered-box {
+  padding: 5px;
+  color: $spotbot-white;
+  background-color: $spotbot-primary; // fall-back
+  background-image: radial-gradient(
+    lighten($color: $spotbot-primary, $amount: 5%),
+    darken($color: $spotbot-primary, $amount: 5%)
+  );
+  border: ridge darken($color: $spotbot-accent, $amount: 5%);
+  border-radius: 2em / 0.3em;
+
+  h2 {
+    font-size: 1.4em;
+  }
+
+  .step-number {
+    font-weight: bolder;
+    padding-right: 8px;
+    font-size: 120%;
   }
 }
 
-/* Portal Component */
-app-portal {
+/* Description & Login Section */
+#aside-and-step-1 {
+  flex: 1 1 100%;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-end;
+  max-width: 600px;
+
+  aside {
+    padding: 28px 45px; // manually push box 1. towards box 3. while keeping aside centred
+    text-align: justify;
+    flex: 1 1 100%;
+    color: $spotbot-black;
+    margin: 0 3px;
+    background-color: darken($color: $spotbot-background, $amount: 5%); // fall-back
+    background-image: radial-gradient(
+      lighten($color: $spotbot-background, $amount: 15%),
+      darken($color: $spotbot-background, $amount: 2%)
+    );
+    border: 1px dotted lighten($color: $spotbot-background, $amount: 10%);
+    border-radius: 2em / 0.2em;
+    font-size: 1.1em;
+
+    mark {
+      background: none;
+      margin-left: -20px;
+      font-size: 115%;
+      font-weight: bolder;
+    }
+  }
+
+  app-login {
+    flex: 1 1 100%;
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+    min-height: 90px;
+  }
+  .login-area {
+    flex: 1 1 100%;
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: flex-end;
+  }
+}
+
+/* Portal Section */
+#step-2 {
   flex: 1 1 50%;
   max-width: 600px;
   min-height: 210px;
+
   .dropzone {
     display: inline-block;
+    cursor: pointer;
     background-color: $spotbot-primary;
-    border-radius: 20px;
-    .svg.portal {
-      mask: url(assets/img/portal.svg);
-      display: inline-block;
-      width: 110px;
-      height: 86px;
-      background: $spotbot-accent;
-      mask-size: cover;
-    }
-    .svg.portal:hover {
-      cursor: pointer;
-      background: darken($color: $spotbot-accent, $amount: 10%);
-    }
+    border-radius: 50%; // circle
   }
-  p {
-    padding-top: 10px;
+
+  .portal {
+    border-radius: 50%;
+    mask: url(./assets/img/portal.svg);
+    display: inline-block;
+    width: 180px;
+    height: 180px;
+    background: $spotbot-accent;
+    mask-size: cover;
+  }
+
+  .portal:hover {
+    background: darken($color: $spotbot-accent, $amount: 10%);
+  }
+
+  label {
+    display: block;
+    padding-top: 20px;
+    pointer-events: none;
   }
 }
 
-/* SongList Component */
-app-song-list {
+/* Song List Section */
+#step-3 {
   display: block;
-  margin: -6px auto;
+  margin: -6px auto; // push box 3. up; compensate for gap added by above flex display
   text-align: center;
-  max-width: 1204px; /* Login width + portal width + flex gap amount */
-  .song-details {
+  max-width: 1204px; // Login width + Portal width + flex gap amount
+
+  .song-area {
     display: flex;
     justify-content: space-between;
-    width: auto;
     margin: 5px;
-    padding: 2px;
+    padding: 0 4px;
+    border: 1px solid $spotbot-white-transparent;
+    border-radius: 2em / 0.2em;
     color: $spotbot-white;
-    .delete-button {
-      background: transparent;
-      border: none;
-      padding: 0;
-      .svg.garbage-bin {
-        mask: url(assets/img/garbage-bin.svg);
-        display: inline-block;
-        width: 15px;
-        height: 20px;
-        background: $spotbot-warn;
-        mask-size: contain;
-      }
-      .svg.garbage-bin:hover {
-        cursor: pointer;
-        background: darken($color: $spotbot-warn, $amount: 10%);
-      }
+  }
+
+  .song-row {
+    display: flex;
+    align-items: center;
+  }
+
+  .delete-button {
+    background: transparent;
+    border: none;
+  }
+
+  .garbage-bin-icon {
+    mask: url(./assets/img/garbage-bin-icon.svg);
+    display: inline-block;
+    width: 15px;
+    height: 20px;
+    background: $spotbot-warn;
+    mask-size: contain;
+  }
+
+  .garbage-bin-icon:hover {
+    cursor: pointer;
+    background: darken($color: $spotbot-warn, $amount: 10%);
+  }
+
+  .confirm-area {
+    margin-top: 15px;
+    label {
+      margin-right: 12px;
     }
   }
 }
 
+footer {
+  background-color: $spotbot-white;
+  display: block;
+  text-align: center;
+  padding-top: 2px; /* Set manually to vertically centre Footer within strip */
+  border-top: 2px solid darken($color: $spotbot-white, $amount: 5%);
+  height: 32px;
+
+  small {
+    font-size: 1em;
+    color: $spotbot-black;
+  }
+
+  mark {
+    background: none;
+    color: $spotbot-accent;
+  }
+
+  address {
+    display: inline;
+    font-size: 0.9em;
+    margin-left: 0.1em;
+  }
+
+  button {
+    cursor: pointer;
+    padding: 0 0.6em;
+    background-color: $spotbot-primary;
+    color: $spotbot-white;
+    border-radius: 8px;
+  }
+}
+
+// Match the side-margins of Login and Portal now that full width of viewport is used
 @media only screen and (max-width: 620px) {
-  /* Match side-margins of Login and Portal Components now that
-     full width of viewport is used */
-  app-song-list {
+  #step-3 {
     margin: -6px 10px;
   }
 }
-@media only screen and (max-width: 1223px) {
-  /* Login & Portal Components will collapse under 1224px
-     (1200px total width + 4px gap + 20px total padding) */
-  app-song-list {
+
+/* Portal wraps under Login when viewport width goes under 1224px, but only comes back
+to the side of Login when the viewport exceeds 1238px; use 2 media queries to wrap Song
+List whenever Portal wraps.
+  1224px = 2(600px) components + 4px gap + 20px total padding
+  1238px = 2(600px) components + 4px gap + 20px total padding + ? */
+@media only screen and (max-width: 1238px) {
+  #step-3 {
     max-width: 600px;
   }
 }
-
-/* Footer Component */
-footer {
-  padding-top: 50px;
-  height: 50px;
-  text-align: center;
-  margin-top: auto;
-  button {
-    cursor: pointer;
-    padding: 0.1em 0.5em;
-    margin-left: 10px;
-    background-color: $spotbot-primary;
-    color: $spotbot-white;
-    border-radius: 10px;
+@media only screen and (min-width: 1224px) {
+  #step-3 {
+    max-width: 1204px;
   }
 }

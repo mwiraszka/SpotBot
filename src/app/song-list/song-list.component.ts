@@ -1,17 +1,15 @@
-import { Component, Input } from '@angular/core'
+import { Component } from '@angular/core'
+
+import { SongsStoreService } from '../songs-store.service'
 
 @Component({
   selector: 'app-song-list',
   templateUrl: './song-list.component.html',
 })
 export class SongListComponent {
-  @Input() files: File[] = []
+  constructor(public songsStore: SongsStoreService) {}
 
-  addFile(newFiles: File[]) {
-    this.files.push(...newFiles)
-  }
-
-  deleteFile(index: number) {
-    this.files.splice(index, 1)
+  onGarbageBinClicked(index: number) {
+    this.songsStore.removeSong(index)
   }
 }

@@ -1,19 +1,20 @@
-import { Component, EventEmitter, Output } from '@angular/core'
+import { Component } from '@angular/core'
+
+import { SongsStoreService } from '../songs-store.service'
 
 @Component({
   selector: 'app-portal',
   templateUrl: './portal.component.html',
 })
 export class PortalComponent {
-  @Output() filesAdded = new EventEmitter<File[]>()
+  constructor(public songsStore: SongsStoreService) {}
 
-  onDrop(droppedFiles: File[]) {
-    console.log(droppedFiles[0])
-    this.filesAdded.emit(droppedFiles)
-  }
-
-  onFileUpload(selectedFiles: File) {
-    console.log(selectedFiles)
-    this.filesAdded.emit([selectedFiles])
+  // Single and multi-file drag & drop functionality outsourced to its own directive
+  onDirectoryUpload($event: any) {
+    if ($event) {
+      for (const file of $event.target.files) {
+        this.songsStore.addSong(file)
+      }
+    }
   }
 }
