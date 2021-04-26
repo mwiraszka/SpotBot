@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject'
+import { BehaviorSubject } from 'rxjs'
 
 import { Song } from './song.model'
 
@@ -33,7 +33,6 @@ export class SongsStoreService {
       this.songs = [
         ...this.songs,
         {
-          id: this.songs.length,
           fileName: file.name.slice(0, file.name.lastIndexOf('.')),
           fileFormat: file.name.slice(file.name.lastIndexOf('.') + 1),
         },

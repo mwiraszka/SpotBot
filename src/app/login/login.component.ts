@@ -9,34 +9,31 @@ import { SpotifyService } from '../spotify.service'
 })
 export class LoginComponent {
   error: any
-  accessToken = ''
-  refreshToken = ''
   queryObject: any
-
+  accessGranted = false
   username = ''
   email = ''
 
+  // Load user details if still accessible using Activated Route
   constructor(private actRoute: ActivatedRoute, private spotifyService: SpotifyService) {
     this.actRoute.queryParamMap.subscribe((params) => {
-      console.log(params)
       this.queryObject = { ...params.keys, ...params }
       this.error = this.queryObject.params.error
-      this.accessToken = this.queryObject.params.access_token
-      this.refreshToken = this.queryObject.params.refresh_token
-      console.log('Found access token=' + this.accessToken)
-      if (this.accessToken) {
+      this.spotifyService.accessToken = this.queryObject.params.access_token
+      this.spotifyService.refreshToken = this.queryObject.params.refresh_token
+      if (this.spotifyService.accessToken) {
         this.loadUserDetails()
       }
     })
   }
 
   loadUserDetails() {
-    this.spotifyService.getUserProfile(this.accessToken).subscribe((result) => {
-      console.log('Found result details=' + JSON.stringify(result))
+    this.spotifyService.getUserProfile().subscribe((result) => {
       if (result) {
         const spotifyProfileData = JSON.parse(JSON.stringify(result))
         this.username = spotifyProfileData.display_name
         this.email = spotifyProfileData.email
+        this.accessGranted = true
       }
     })
   }

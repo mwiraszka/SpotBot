@@ -97,8 +97,7 @@ main h1 {
   }
 }
 
-/* Description & Login Section */
-#aside-and-step-1 {
+#aside-and-login-section {
   flex: 1 1 100%;
   display: flex;
   flex-flow: row wrap;
@@ -133,7 +132,7 @@ main h1 {
     display: flex;
     flex-flow: wrap;
     justify-content: center;
-    min-height: 90px;
+    min-height: 130px;
   }
   .login-area {
     flex: 1 1 100%;
@@ -144,8 +143,7 @@ main h1 {
   }
 }
 
-/* Portal Section */
-#step-2 {
+#portal-section {
   flex: 1 1 50%;
   max-width: 600px;
   min-height: 210px;
@@ -178,8 +176,7 @@ main h1 {
   }
 }
 
-/* Song List Section */
-#step-3 {
+#song-list-section {
   display: block;
   margin: -6px auto; // push box 3. up; compensate for gap added by above flex display
   text-align: center;
