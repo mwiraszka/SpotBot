@@ -14,7 +14,7 @@ export class LoginComponent {
 
   // Load user details if still accessible using Activated Route
   constructor(private actRoute: ActivatedRoute, private spotifyService: SpotifyService) {
-    this.actRoute.queryParamMap.subscribe(params => {
+    this.actRoute.queryParamMap.subscribe((params) => {
       this.queryObject = { ...params.keys, ...params }
       this.spotifyService.accessToken = this.queryObject.params.access_token
       this.spotifyService.refreshToken = this.queryObject.params.refresh_token
