@@ -3,14 +3,11 @@
 </h2>
 
 <section class="login-area">
-  <p id="welcome-message" *ngIf="accessGranted && !error; else notLoggedIn">
+  <p id="welcome-message" *ngIf="accessGranted; else notLoggedIn">
     Welcome, {{ username | slice:0:40 }}!<br>
     <span class="highlight">Successfully logged in.</span>
   </p>
   <ng-template #notLoggedIn>
     <a href="/login" id="login-button" class="btn btn-success">Login</a>
-    <p id="error-message" *ngIf="error">
-      Unable to login, please try again later. Error: [ {{ error | slice:0:20 }} ...]
-    </p>
   </ng-template>
 </section>

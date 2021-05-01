@@ -8,16 +8,14 @@ import { SpotifyService } from '../spotify.service'
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  error: any
   queryObject: any
   username = ''
   accessGranted = false
 
   // Load user details if still accessible using Activated Route
   constructor(private actRoute: ActivatedRoute, private spotifyService: SpotifyService) {
-    this.actRoute.queryParamMap.subscribe((params) => {
+    this.actRoute.queryParamMap.subscribe(params => {
       this.queryObject = { ...params.keys, ...params }
-      this.error = this.queryObject.params.console.error
       this.spotifyService.accessToken = this.queryObject.params.access_token
       this.spotifyService.refreshToken = this.queryObject.params.refresh_token
       if (this.spotifyService.accessToken) {
