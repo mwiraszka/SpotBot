@@ -1,6 +1,6 @@
 {
   "name": "spotbot",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve -o",
@@ -37,6 +37,7 @@
     "id3-parser": "^2.0.0",
     "ng2-file-upload": "^1.4.0",
     "rxjs": "~6.6.0",
+    "spotify-web-api-js": "^1.5.1",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
   },

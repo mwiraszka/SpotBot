@@ -26,7 +26,8 @@ exports.login = functions.https.onRequest((_, res) => {
   res.setHeader('Cache-Control', 'private')
   res.set('Set-Cookie', `__session=${state};`)
 
-  const scope = 'user-read-private user-read-email'
+  const scope = 'user-read-private user-read-email playlist-read-private playlist-modify-public'
+
   res.redirect('https://accounts.spotify.com/authorize?' + querystring.stringify({
     response_type: 'code',
     client_id: clientId,

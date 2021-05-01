@@ -1,5 +1,7 @@
 export interface Song {
   fileName: string
   fileFormat: string
-  spotifyId?: string
+  spotifyTrackUri: string | null
+  spotifyTrackName: string | null
+  spotifyTrackArtist: string | null
 }

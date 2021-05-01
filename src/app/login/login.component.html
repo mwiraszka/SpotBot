@@ -4,12 +4,13 @@
 
 <section class="login-area">
   <p id="welcome-message" *ngIf="accessGranted && !error; else notLoggedIn">
-    Welcome, {{ username }}!<br>Successfully logged in as {{ email }}.
+    Welcome, {{ username | slice:0:40 }}!<br>
+    <span class="highlight">Successfully logged in.</span>
   </p>
   <ng-template #notLoggedIn>
-    <a href="/login" class="btn btn-success">Login</a>
+    <a href="/login" id="login-button" class="btn btn-success">Login</a>
     <p id="error-message" *ngIf="error">
-      Unable to login, please try again later.<br>[ {{ error | slice:0:40 }} ]
+      Unable to login, please try again later. Error: [ {{ error | slice:0:20 }} ...]
     </p>
   </ng-template>
 </section>

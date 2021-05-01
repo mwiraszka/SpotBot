@@ -20,23 +20,45 @@ body {
   background-image: url(./assets/img/bg-texture-dots.svg);
 }
 
+// Global text stylings
+span.highlight {
+  padding: 0;
+  color: $spotbot-accent;
+  font-weight: bold;
+}
+span.smaller {
+  font-size: 75%;
+  font-weight: lighter;
+}
+span.gray-out {
+  color: #dddddd66;
+}
+
 header app-spotbot-logo {
   display: block;
-  height: 50px;
+  height: 60px;
   padding: 5px 20px; // manually adjust to centre vertically
   background-color: $spotbot-white;
   border-bottom: 2px solid darken($color: $spotbot-white, $amount: 10%);
   #spotbot-logo-svg {
-    width: 175px;
-    #headphones-path {
+    width: 210px;
+    #headphones-path,
+    #dot-ca-text {
       fill: $spotbot-accent;
+      font-weight: lighter;
     }
     #dog-path,
     #spotbot-text {
       fill: $spotbot-black;
     }
-    #dot-ca-text {
-      fill: $spotbot-accent;
+    #stripe-1-path {
+      stroke: lighten($color: $spotbot-black, $amount: 5%);
+    }
+    #stripe-2-path {
+      stroke: lighten($color: $spotbot-black, $amount: 12%);
+    }
+    #stripe-3-path {
+      stroke: lighten($color: $spotbot-black, $amount: 25%);
     }
   }
 }
@@ -44,17 +66,20 @@ header app-spotbot-logo {
 // Push footer down (main height = 100% viewport height - header - footer)
 main {
   padding-bottom: 60px;
-  min-height: calc(100vh - 50px - 32px);
+  min-height: calc(100vh - 60px - 32px);
 }
 
 main h1 {
   color: $spotbot-black;
   height: 90px;
   padding-top: 40px;
-  padding-bottom: 80px;
+  padding-bottom: 60px;
   text-align: center;
   font-weight: 300;
   font-size: calc(1.5em + 0.5vw);
+  img {
+    padding-top: 0;
+  }
 }
 
 #spotify-logo {
@@ -105,7 +130,7 @@ main h1 {
   max-width: 600px;
 
   aside {
-    padding: 28px 45px; // manually push box 1. towards box 3. while keeping aside centred
+    padding: 40px 45px; // manually push box 1. towards box 3. while keeping aside centred
     text-align: justify;
     flex: 1 1 100%;
     color: $spotbot-black;
@@ -117,9 +142,9 @@ main h1 {
     );
     border: 1px dotted lighten($color: $spotbot-background, $amount: 10%);
     border-radius: 2em / 0.2em;
-    font-size: 1.1em;
+    font-size: 1.2em;
 
-    mark {
+    mark.indent {
       background: none;
       margin-left: -20px;
       font-size: 115%;
@@ -132,21 +157,25 @@ main h1 {
     display: flex;
     flex-flow: wrap;
     justify-content: center;
-    min-height: 130px;
+    height: 120px;
   }
+
   .login-area {
     flex: 1 1 100%;
     display: flex;
     margin-top: 10px;
     justify-content: center;
     align-items: flex-end;
+    #login-button {
+      margin-bottom: 20px;
+    }
   }
 }
 
 #portal-section {
   flex: 1 1 50%;
   max-width: 600px;
-  min-height: 210px;
+  min-height: 350px;
 
   .dropzone {
     display: inline-block;
@@ -159,8 +188,8 @@ main h1 {
     border-radius: 50%;
     mask: url(./assets/img/portal.svg);
     display: inline-block;
-    width: 180px;
-    height: 180px;
+    width: 220px;
+    height: 220px;
     background: $spotbot-accent;
     mask-size: cover;
   }
@@ -181,10 +210,11 @@ main h1 {
   margin: -6px auto; // push box 3. up; compensate for gap added by above flex display
   text-align: center;
   max-width: 1204px; // Login width + Portal width + flex gap amount
+  min-height: 110px;
 
-  .song-area {
+  ul.song-list {
     display: flex;
-    justify-content: space-between;
+    text-align: left;
     margin: 5px;
     padding: 0 4px;
     border: 1px solid $spotbot-white-transparent;
@@ -192,21 +222,22 @@ main h1 {
     color: $spotbot-white;
   }
 
-  .song-row {
-    display: flex;
-    align-items: center;
+  li {
+    list-style-type: none;
   }
 
-  .delete-button {
-    background: transparent;
+  #delete-button {
+    margin-left: 10px;
     border: none;
+    background: transparent;
+    padding: 0;
   }
 
   .garbage-bin-icon {
     mask: url(./assets/img/garbage-bin-icon.svg);
     display: inline-block;
-    width: 15px;
-    height: 20px;
+    width: 12px;
+    height: 16px;
     background: $spotbot-warn;
     mask-size: contain;
   }
@@ -216,11 +247,19 @@ main h1 {
     background: darken($color: $spotbot-warn, $amount: 10%);
   }
 
-  .confirm-area {
-    margin-top: 15px;
-    label {
-      margin-right: 12px;
+  .confirm-text {
+    margin-top: 20px;
+    padding: 10px;
+    .warn {
+      padding: 3px;
+      color: lighten($color: $spotbot-warn, $amount: 8%);
+      font-size: 110%;
+      font-weight: lighter;
     }
+  }
+
+  button {
+    margin: 10px 0 20px 0;
   }
 }
 
@@ -259,23 +298,46 @@ footer {
 
 // Match the side-margins of Login and Portal now that full width of viewport is used
 @media only screen and (max-width: 620px) {
-  #step-3 {
+  #song-list-section {
     margin: -6px 10px;
   }
 }
 
-/* Portal wraps under Login when viewport width goes under 1224px, but only comes back
-to the side of Login when the viewport exceeds 1238px; use 2 media queries to wrap Song
-List whenever Portal wraps.
-  1224px = 2(600px) components + 4px gap + 20px total padding
-  1238px = 2(600px) components + 4px gap + 20px total padding + ? */
-@media only screen and (max-width: 1238px) {
-  #step-3 {
+/* Wrap Song List whenever Portal wraps. Portal moves below Login when vw < 1224px
+  1224px = 2(600px) components + 4px gap + 20px total padding */
+@media only screen and (max-width: 1224px) {
+  #song-list-section {
     max-width: 600px;
   }
 }
 @media only screen and (min-width: 1224px) {
-  #step-3 {
+  #song-list-section {
     max-width: 1204px;
+  }
+}
+
+// Remove textured background when viewport is so small that dots become too defined
+@media only screen and (max-width: 1000px) {
+  body {
+    background-color: $spotbot-background;
+    background-image: none;
+  }
+}
+
+// At very narrow viewports, ensure h1 text does not overlap with img and aside text
+@media only screen and (max-width: 570px) and (min-width: 281px) {
+  main h1 {
+    padding-bottom: 100px;
+    img {
+      padding-top: 5px;
+    }
+  }
+}
+@media only screen and (max-width: 280px) {
+  main h1 {
+    padding-bottom: 140px;
+    img {
+      padding-top: 5px;
+    }
   }
 }

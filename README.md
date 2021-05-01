@@ -1,18 +1,20 @@
 # SpotBot
 
 <i>Migrate your local music collection to Spotify</i><br>
-Live website available at:&nbsp;&nbsp;&nbsp; [spotbot-762b2.web.app/](https://spotbot-762b2.web.app/)
+Live website available at:&nbsp; [spotbot.ca](https://spotbot.ca/)
 ***
 <br>
 
-SpotBot is a web application built using [Angular CLI](https://github.com/angular/angular-cli) that automates moving your local music collection to Spotify. The process consists of just two steps:
+SpotBot is a web application built using [Angular CLI](https://github.com/angular/angular-cli) that automates moving your local music collection to Spotify. The process consists of just three steps:
 
 1. <span style="border: 1px solid grey; border-radius: 4px; padding: 0 2px;">
-    Login</span> to your Spotify account through SpotBot's secure account validator.
+    Login to Spotify</span> through Spotify's secure account authentication system.
 2. <span style="border: 1px solid grey; border-radius: 4px; padding: 0 2px;">
-    Drag & drop</span> your music into SpotBot's music portal.
+    Add Songs</span> by uploading or dragging & dropping your music into SpotBot's music portal.
+3. <span style="border: 1px solid grey; border-radius: 4px; padding: 0 2px;">
+    Confirm Migration</span> to move songs to Spotify.
 
-And that's it – let us take care of the rest! SpotBot will create a playlist in your account and automatically populate it with all the songs it can find on Spotify. It will then give you a summary of which songs were added and which could not be found.
+And that's it – let us take care of the rest! SpotBot will create a playlist in your account and automatically populate it with all the songs it was able to find on Spotify.
 <br><br>
 
 ## Development details
@@ -76,8 +78,8 @@ Ensure that before any pull request creation `npm run build` is run which will u
 ## Versioning
 
 This project uses [SemVer](http://semver.org) for versioning.
-* **Version 1.0.0**:
-    * Currently in development
+* **Version 1.0.0** (released May 1, 2021):
+    * Migrate up to 100 songs at a time with SpotBot's basic file name search algorithm
 <br><br>
 
 ## Authors

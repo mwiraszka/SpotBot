@@ -1,10 +1,10 @@
 import { HttpClientModule } from '@angular/common/http'
-//import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core'
+// import { APP_INITIALIZER, ErrorHandler, NgModule } from '@angular/core'
 import { NgModule } from '@angular/core'
 import { AngularFireFunctionsModule, ORIGIN } from '@angular/fire/functions'
 import { BrowserModule } from '@angular/platform-browser'
-//import { Router } from '@angular/router'
-//import * as Sentry from '@sentry/angular'
+// import { Router } from '@angular/router'
+// import * as Sentry from '@sentry/angular'
 import { FileUploadModule } from 'ng2-file-upload'
 
 import { environment } from '../environments/environment'
@@ -14,7 +14,6 @@ import { AppDragAndDropDirective } from './drag-and-drop.directive'
 import { LoginComponent } from './login/login.component'
 import { PortalComponent } from './portal/portal.component'
 import { SongListComponent } from './song-list/song-list.component'
-import { SongsStoreService } from './songs-store.service'
 import { SpotbotLogoComponent } from './spotbot-logo/spotbot-logo.component'
 
 export function provideOrigin() {
@@ -41,7 +40,6 @@ export function provideOrigin() {
     FileUploadModule,
   ],
   providers: [
-    SongsStoreService,
     // {
     //   provide: ErrorHandler,
     //   useValue: Sentry.createErrorHandler({

@@ -2,17 +2,51 @@
   <span class="step-number">3.</span> Confirm Migration
 </h2>
 
-<div class="song-area" *ngFor="let song of songsStore.songs; let i=index">
-  <div class="song-row">{{ song.fileName }} - {{ song.fileFormat }}</div>
-  <button class="delete-button" (click)="onGarbageBinClicked(i)">
-    <span class="garbage-bin-icon"></span>
-  </button>
+<ul class="song-list" *ngFor="let song of songsStore.songs; let i=index">
+  <li>
+    <div class="spotify-info" *ngIf="song.spotifyTrackName; else grayOut">
+      "{{ song.fileName }}"&nbsp;
+      <span class="smaller">({{ song.fileFormat | uppercase }})</span><br>
+      <span class="highlight">SpotBot found:</span>&nbsp;&nbsp;&nbsp;
+      {{ song.spotifyTrackArtist }} - {{ song.spotifyTrackName }}
+      <button id="delete-button" (click)="onGarbageBinClicked(i)">
+        <span class="garbage-bin-icon"></span>
+      </button>
+    </div>
+    <ng-template #grayOut>
+      <span class="gray-out">Could not
+        find&nbsp;&nbsp;"{{ song.fileName }}"</span>&nbsp;&nbsp;
+      <button id="delete-button" (click)="onGarbageBinClicked(i)">
+        <span class="garbage-bin-icon"></span>
+      </button>
+    </ng-template>
+  </li>
+</ul>
+
+<div class="confirm-text" *ngIf="songsStore.songsFound">
+  <label for="confirm-button" *ngIf="songsStore.songsFound <= 100; else tooMany">
+    <span class="singular" *ngIf="songsStore.songsFound === 1; else plural">
+      Add this 1 song
+    </span>
+    <ng-template #plural>
+      Add these {{ songsStore.songsFound }} songs
+    </ng-template>
+    to playlist <span class="highlight">{{ playlistName }}</span>
+  </label>
+  <ng-template #tooMany>
+    Add these <span class="warn">{{ songsStore.songsFound }}</span> songs to playlist
+    <span class="highlight">{{ playlistName }}</span><br>
+    <span class="warn">Please move only up to 100 songs at a time!</span>
+  </ng-template>
 </div>
 
-<div class="confirm-area">
-  <label for="confirm-button" *ngIf="songsStore.songs.length > 0">
-    Add {{ songsStore.songs.length }} songs to playlist "SpotBot-22-04-2021"
-  </label>
-  <button class="btn btn-success" name="confirm-button" id="confirm-button"
-    [disabled]="songsStore.songs.length < 1">Confirm</button>
-</div>
+<button class="btn btn-success" name="confirm-button" id="confirm-button"
+  [disabled]="!songsStore.songsFound || songsStore.songsFound > 10"
+  (click)="onConfirmClicked()">
+  Confirm
+</button>&nbsp;
+
+<button class="btn btn-danger" name="clear-all-button" id="clear-all-button"
+  [disabled]="!songsStore.songsFound" (click)="onClearAllClicked()">
+  Clear All
+</button>
