@@ -1,14 +1,16 @@
-<h2><span class="step-number">1.</span> Login to Spotify</h2>
-<div class="login-area" *ngIf="!accessToken">
-  <div class="login-button">
-    <a href="/login" class="btn btn-success">Login</a>
-  </div>
-  <div *ngIf="error">
-    <p>Unable to login, please try again.</p>
-  </div>
-</div>
-<div class="loggedIn" *ngIf="accessToken">
-  <p>Welcome!</p>
-  <p>{{ username }} - {{ email }}</p>
-  <p>Successfully logged in.</p>
-</div>
+<h2>
+  <span class="step-number">1.</span> Login to Spotify
+</h2>
+
+<section class="login-area">
+  <p id="welcome-message" *ngIf="accessGranted && !error; else notLoggedIn">
+    Welcome, {{ username | slice:0:40 }}!<br>
+    <span class="highlight">Successfully logged in.</span>
+  </p>
+  <ng-template #notLoggedIn>
+    <a href="/login" id="login-button" class="btn btn-success">Login</a>
+    <p id="error-message" *ngIf="error">
+      Unable to login, please try again later. Error: [ {{ error | slice:0:20 }} ...]
+    </p>
+  </ng-template>
+</section>

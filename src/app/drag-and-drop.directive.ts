@@ -28,12 +28,9 @@ export class AppDragAndDropDirective {
     evt.stopPropagation()
     this.border = '2px dotted transparent'
 
-    /* Create File object array from input and change the app's Song State; use addSong()
-    method to convert each File-type to a Song-type before pushing it to the array */
-    const transfer = evt.dataTransfer
-    if (transfer) {
-      /* es-lint ignore */
-      for (const file of transfer.files) {
+    /* es-lint ignore */
+    if (evt.dataTransfer) {
+      for (const file of evt.dataTransfer.files) {
         this.songsStore.addSong(file)
       }
     }
