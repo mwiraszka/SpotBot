@@ -92,3 +92,11 @@ This project uses [SemVer](http://semver.org) for versioning.
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 <br><br>
+
+## Application Screenshots
+![SpotBot Screenshot 1](screenshots/screenshot-1.png "SpotBot - Login")
+![SpotBot Screenshot 2](screenshots/screenshot-2.png "SpotBot - Drag & Drop")
+![SpotBot Screenshot 3](screenshots/screenshot-3.png "SpotBot - Long List")
+![SpotBot Screenshot 4](screenshots/screenshot-4.png "SpotBot - Spotify Playlist")
+
+

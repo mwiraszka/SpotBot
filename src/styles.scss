@@ -21,16 +21,15 @@ body {
 }
 
 // Global text stylings
-span.highlight {
-  padding: 0;
+.highlight {
   color: $spotbot-accent;
   font-weight: bold;
 }
-span.smaller {
+.smaller {
   font-size: 75%;
   font-weight: lighter;
 }
-span.gray-out {
+.gray-out {
   color: #dddddd66;
 }
 
@@ -130,11 +129,11 @@ main h1 {
   max-width: 600px;
 
   aside {
-    padding: 40px 45px; // manually push box 1. towards box 3. while keeping aside centred
+    padding: 38px 45px; // manually push box 1. towards box 3. while keeping aside centred
     text-align: justify;
     flex: 1 1 100%;
     color: $spotbot-black;
-    margin: 0 3px;
+    margin-bottom: 4px;
     background-color: darken($color: $spotbot-background, $amount: 5%); // fall-back
     background-image: radial-gradient(
       lighten($color: $spotbot-background, $amount: 15%),
@@ -212,22 +211,32 @@ main h1 {
   max-width: 1204px; // Login width + Portal width + flex gap amount
   min-height: 110px;
 
-  ul.song-list {
+  .song-list {
     display: flex;
     text-align: left;
-    margin: 5px;
-    padding: 0 4px;
     border: 1px solid $spotbot-white-transparent;
     border-radius: 2em / 0.2em;
     color: $spotbot-white;
+    padding: 0 20px;
+    margin: 5px;
   }
 
-  li {
-    list-style-type: none;
+  .spotify-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    p {
+      padding: 0;
+      margin: 2px 5px;
+    }
   }
 
   #delete-button {
-    margin-left: 10px;
+    margin: 2px 0 0 10px;
     border: none;
     background: transparent;
     padding: 0;
@@ -255,6 +264,9 @@ main h1 {
       color: lighten($color: $spotbot-warn, $amount: 8%);
       font-size: 110%;
       font-weight: lighter;
+    }
+    label {
+      pointer-events: none;
     }
   }
 
