@@ -8,10 +8,6 @@
     ],
     "rewrites": [
       {
-        "source": "/helloWorld",
-        "function": "helloWorld"
-      },
-      {
         "source": "/login",
         "function": "login"
       },
