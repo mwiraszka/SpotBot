@@ -55,10 +55,11 @@ exports.callback = functions.https.onRequest((req, res) => {
 
   request.post(authOptions, (error, response, body) => {
     if (!error && response.statusCode === 200) {
-      res.redirect(localRedirect + '/?' + querystring.stringify({
-          access_token: body.access_token,
-          refresh_token: body.refresh_token
-      }))
+      res.redirect(localRedirect)
+      // res.redirect(localRedirect + '/?' + querystring.stringify({
+      //     access_token: body.access_token,
+      //     refresh_token: body.refresh_token
+      // }))
     } else {
       res.redirect(localRedirect + '/?' + querystring.stringify({
           error: 'invalid_token'
