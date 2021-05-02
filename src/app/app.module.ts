@@ -18,7 +18,7 @@ import { SpotbotLogoComponent } from './spotbot-logo/spotbot-logo.component'
 
 export function provideOrigin() {
   if (environment.production) {
-    return [{ provide: ORIGIN, useValue: 'https://spotbot-762b2.web.app' }]
+    return [{ provide: ORIGIN, useValue: 'https://spotbot.ca/' }]
   }
   return [{ provide: ORIGIN, useValue: 'http://localhost:5001' }]
 }
