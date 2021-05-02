@@ -38,6 +38,7 @@ exports.login = functions.https.onRequest((_, res) => {
 })
 
 exports.callback = functions.https.onRequest((req, res) => {
+  console.log('In callback function execution')
   const code = req.query.code || null
   // redirect_uri param needed?
   const authOptions = {
@@ -53,7 +54,9 @@ exports.callback = functions.https.onRequest((req, res) => {
     json: true
   }
 
+  console.log('Attempt to call for api/token with authOptions=' + JSON.stringify(authOptions))
   request.post(authOptions, (error, response, body) => {
+    console.log('Found post result error=' + error + ' with status code=' + response.statusCode)
     if (!error && response.statusCode === 200) {
       res.redirect(localRedirect + '/?' + querystring.stringify({
           access_token: body.access_token,
