@@ -130,7 +130,7 @@ main h1 {
 
   aside {
     padding: 38px 45px; // manually push box 1. towards box 3. while keeping aside centred
-    text-align: justify;
+    text-align: left;
     flex: 1 1 100%;
     color: $spotbot-black;
     margin-bottom: 4px;
@@ -351,5 +351,13 @@ footer {
     img {
       padding-top: 5px;
     }
+  }
+}
+
+// Centre logo on narrow viewports
+@media only screen and (max-width: 450px) {
+  header app-spotbot-logo {
+    display: flex;
+    justify-content: center;
   }
 }

@@ -48,7 +48,7 @@ v12.18.0
 
 https://developer.spotify.com/documentation/web-api/quick-start/
 
-[Spotify Architecture - Powerpoint](https://docs.google.com/presentation/d/1qqGzH50ScbGdxuPcqgEPWwTDu0lu40HsVcIGo_vSNFk/edit)
+[SpotBot's Spotify Authentication Flow](https://docs.google.com/presentation/d/1qqGzH50ScbGdxuPcqgEPWwTDu0lu40HsVcIGo_vSNFk/edit)
 
 
 ### Firebase functions
@@ -58,7 +58,6 @@ firebase deploy --only hosting
 firebase deploy --only functions
 ```
 
-- Note: we use `OnCall` [Firebase functions](https://firebase.google.com/docs/functions/callable) type.
 
 ### Using functions
 
@@ -70,7 +69,7 @@ The emulator is setup to load files from the `dist` folder so you will have to d
 
 ### Deploy functions
 
-Deployment has been auto configured as part of the .github trigger. However, functions must still be deployed manually.
+Deployment has been auto-configured as part of the .github trigger. However, functions must still be deployed manually.
 
 Ensure that before any pull request creation `npm run build` is run which will update the package.json version.
 <br><br>
@@ -80,6 +79,8 @@ Ensure that before any pull request creation `npm run build` is run which will u
 This project uses [SemVer](http://semver.org) for versioning.
 * **Version 1.0.0** (released May 1, 2021):
     * Migrate up to 100 songs at a time with SpotBot's basic file name search algorithm
+* **Version 1.0.1** (released May 2, 2021):
+    * Minor text and logo layout change
 <br><br>
 
 ## Authors
