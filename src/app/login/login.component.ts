@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 
 import { SpotifyService } from '../spotify.service'
+import { environment } from '../../environments/environment'
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,7 @@ export class LoginComponent {
     })
   }
 
-  loadUserDetails() {
+  loadUserDetails(): void {
     this.spotifyService.getUserProfile().subscribe((response) => {
       if (response) {
         const spotifyProfileData = JSON.parse(JSON.stringify(response))
@@ -36,5 +37,13 @@ export class LoginComponent {
         this.username = this.spotifyService.userDisplayName
       }
     })
+  }
+
+  onLoginClicked(): void {
+    if (environment.production) {
+      window.location.href = 'spotbot.ca/login'
+    } else {
+      console.log('Login authentication is currently unavailable in development mode.')
+    }
   }
 }

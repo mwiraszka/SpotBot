@@ -8,6 +8,6 @@
     <span class="highlight">Successfully logged in.</span>
   </p>
   <ng-template #notLoggedIn>
-    <a href="/login" id="login-button" class="btn btn-success">Login</a>
+    <a (click)="onLoginClicked()" id="login-button" class="btn btn-success">Login</a>
   </ng-template>
 </section>

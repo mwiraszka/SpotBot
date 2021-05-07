@@ -81,6 +81,8 @@ This project uses [SemVer](http://semver.org) for versioning.
     * Migrate up to 100 songs at a time with SpotBot's basic file name search algorithm
 * **Version 1.0.1** (released May 2, 2021):
     * Minor text and logo layout change
+* **Version 1.0.2** (released May 7, 2021):
+    * [Sentry](https://sentry.io/welcome/) error tracking implemented
 <br><br>
 
 ## Authors
