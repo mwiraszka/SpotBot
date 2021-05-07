@@ -4,7 +4,6 @@ import { AngularFireFunctionsModule, ORIGIN } from '@angular/fire/functions'
 import { BrowserModule } from '@angular/platform-browser'
 import { Router } from '@angular/router'
 import * as Sentry from '@sentry/angular'
-import { FileUploadModule } from 'ng2-file-upload'
 
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -36,7 +35,6 @@ export function provideOrigin() {
     AppRoutingModule,
     AngularFireFunctionsModule,
     HttpClientModule,
-    FileUploadModule,
   ],
   providers: [
     {
