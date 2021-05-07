@@ -41,7 +41,7 @@ export class LoginComponent {
 
   onLoginClicked(): void {
     if (environment.production) {
-      window.location.href = 'spotbot.ca/login'
+      window.location.href = 'https://www.spotbot.ca/login'
     } else {
       console.log('Login authentication is currently unavailable in development mode.')
     }
